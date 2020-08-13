@@ -55,9 +55,9 @@
       }
     ],
     "globalMetadata": {
-      "_appTitle": "Codemasters Telemetry DotNet",
+      "_appTitle": "S7evemetry DotNet",
       "_gitContribute": {
-        "repo": "https://github.com/LuckyNoS7evin/codemasters-temeletry-sdk",
+        "repo": "https://github.com/LuckyNoS7evin/s7evemetry",
         "branch": "dev"
       },
       "_enableSearch": false,
@@ -67,7 +67,8 @@
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
-      "default"
+      "default",
+      "templates/luckynos7evin"
     ],
     "postProcessors": [],
     "markdownEngineName": "markdig",
