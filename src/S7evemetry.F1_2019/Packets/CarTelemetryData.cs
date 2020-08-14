@@ -1,4 +1,4 @@
-﻿using S7evemetry.Core.Packets;
+﻿using S7evemetry.Core.Packets.F1;
 using System;
 
 namespace S7evemetry.F1_2019.Packets

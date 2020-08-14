@@ -1,10 +1,11 @@
 ﻿using S7evemetry.Core;
 using S7evemetry.F1_2019.Observers;
-using S7evemetry.Core.Packets;
+using S7evemetry.Core.Packets.F1;
 using S7evemetry.Core.Structures.EventDetails;
 using System;
 using System.Diagnostics;
 using S7evemetry.F1_2019.Structures;
+using S7evemetry.Core.Enums.F1;
 
 namespace S7evemetry.Console
 {
@@ -48,7 +49,7 @@ namespace S7evemetry.Console
             var index = (int)data.Header.PlayerCarIndex;
             lock (SyncRoot)
             {
-                if(data.Data.EventCode == Core.Enums.EventCode.FTLP)
+                if(data.Data.EventCode == EventCode.FTLP)
                 {
                     var fastestLap = (FastestLap)data.Data.EventDetails;
                     if(fastestLap.VehicleIndex == index)

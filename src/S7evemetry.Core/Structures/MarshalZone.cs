@@ -1,4 +1,4 @@
-﻿using S7evemetry.Core.Enums;
+﻿using S7evemetry.Core.Enums.F1;
 using System;
 
 namespace S7evemetry.Core.Structures

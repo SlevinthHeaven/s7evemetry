@@ -1,5 +1,5 @@
 ﻿using S7evemetry.Core;
-using S7evemetry.Core.Packets;
+using S7evemetry.Core.Packets.F1;
 using S7evemetry.F1_2019.Structures;
 using S7evemetry.F1_2019.Packets;
 using System;

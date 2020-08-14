@@ -1,6 +1,6 @@
 ﻿using System;
 using S7evemetry.Core.Enums.F1;
-using S7evemetry.Core.Packets;
+using S7evemetry.Core.Packets.F1;
 using S7evemetry.Core.Structures;
 using S7evemetry.F1_2019.Structures;
 

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <nullable>enable</nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\S7evemetry.Core\S7evemetry.Core.csproj" />
+    <ProjectReference Include="..\S7evemetry.Udp\S7evemetry.Udp.csproj" />
+  </ItemGroup>
+
+</Project>

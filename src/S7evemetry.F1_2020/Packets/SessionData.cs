@@ -1,4 +1,4 @@
-﻿using S7evemetry.Core.Packets;
+﻿using S7evemetry.Core.Packets.F1;
 using S7evemetry.F1_2020.Structures;
 using System;
 

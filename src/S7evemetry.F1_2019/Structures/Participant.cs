@@ -9,7 +9,7 @@ namespace S7evemetry.F1_2019.Structures
     {
         public static new int Size { get; } = 54;
                
-        public Core.Enums.Telemetry YourTelemetry { get; set; }
+        public Telemetry YourTelemetry { get; set; }
 
         public static Participant Read(Span<byte> input)
         {
@@ -17,7 +17,7 @@ namespace S7evemetry.F1_2019.Structures
             item.Driver = DriverHelper.GetDriverById(input[1]);
             item.Team = TeamHelper.GetTeamById(input[2]);
             item.Nationality = NationalityHelper.GetNationalityById(input[4]);
-            item.YourTelemetry = (Core.Enums.Telemetry)input[53];
+            item.YourTelemetry = (Telemetry)input[53];
             return item;
         }
     }
