@@ -1,5 +1,8 @@
 # Disclaimer
-The majority of this project (S7evemetry.FH4 & S7evemetry.FM7) was taken from an existing GitHub repository by [Geoffrey Vancoetsem "here"](https://github.com/geeooff/forza-data-web). I have included the Licence file and kept the original copyright on any code that remained untouched, this is here to include credit to Geoffrey for his work. 
+The majority of this project (S7evemetry.FH4 & S7evemetry.FM7) was taken from an existing
+GitHub repository by [Geoffrey Vancoetsem "here"](https://github.com/geeooff/forza-data-web). 
+I have included the Licence file and kept the original copyright notice on any code that remained untouched,
+this is here to include credit to Geoffrey for his work. 
 
 # Forza Data Web (_Work in progress_)
 Forza Motorsport 7 / Horizon 4 Data-Out receiver

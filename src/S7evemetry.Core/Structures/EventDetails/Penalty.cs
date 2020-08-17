@@ -1,4 +1,5 @@
-﻿using System;
+﻿using S7evemetry.Core.Enums.F1;
+using System;
 
 namespace S7evemetry.Core.Structures.EventDetails
 {
@@ -10,7 +11,7 @@ namespace S7evemetry.Core.Structures.EventDetails
         /// <summary>
         /// Penalty type – see Appendices
         /// </summary>
-        public byte PenaltyType;
+        public PenaltyType PenaltyType;
 
         /// <summary>
         /// Infringement type – see Appendices

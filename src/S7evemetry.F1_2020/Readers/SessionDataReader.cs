@@ -18,7 +18,7 @@ namespace S7evemetry.F1_2020.Readers
 
             if (packetHeader.PacketId != PacketType.Session) return null;
 
-            if (input.Length != packetHeader.Size + SessionData.Size)
+            if (input.Length !=  SessionData.Size)
             {
                 return null;
             }

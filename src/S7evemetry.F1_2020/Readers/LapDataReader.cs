@@ -17,7 +17,7 @@ namespace S7evemetry.F1_2020.Readers
 
             if (packetHeader.PacketId != PacketType.LapData) return null;
 
-            if (input.Length != packetHeader.Size +
+            if (input.Length != 
                                 (packetHeader.GridSize * CarLap.Size) +
                                 LapData.Size)
             {

@@ -26,7 +26,7 @@ namespace S7evemetry.F1_2019.Readers
 
 			if (packetHeader.PacketId != PacketType.Event) return null;
 
-			if (input.Length != packetHeader.Size + 9) return null;
+			if (input.Length !=  9) return null;
 
 			var packet = new PacketData<PacketHeader, EventData>()
 			{

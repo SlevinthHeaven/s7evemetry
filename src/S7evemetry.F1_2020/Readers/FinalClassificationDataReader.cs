@@ -18,7 +18,7 @@ namespace S7evemetry.F1_2020.Readers
 
 			if (packetHeader.PacketId != PacketType.FinalClassification) return null;
 
-			if (input.Length != packetHeader.Size +
+			if (input.Length != 
 								(packetHeader.GridSize * FinalClassification.Size) +
 								FinalClassificationData.Size)
 			{

@@ -17,9 +17,7 @@ namespace S7evemetry.F1_2018.Readers
 
             if (packetHeader.PacketId != PacketType.LapData) return null;
 
-            if (input.Length != packetHeader.Size +
-                                (packetHeader.GridSize * CarLap.Size) +
-                                LapData.Size)
+            if (input.Length != (packetHeader.GridSize * CarLap.Size) + LapData.Size)
             {
                 return null;
             }

@@ -10,6 +10,7 @@ namespace S7evemetry.Core.Packets.F1
     /// </summary>
     public class EventData
     {
+        public static int Size { get; } = 9;
         /// <summary>
         /// SSTA - Session Started “SSTA” Sent when the session starts
         /// SEND - Session Ended “SEND” Sent when the session ends
@@ -56,7 +57,7 @@ namespace S7evemetry.Core.Packets.F1
                 data.EventDetails = new FastestLap
                 {
                     VehicleIndex = input[4],
-                    LapTime = BitConverter.ToSingle(input.Slice(5, 4))
+                    LapTime = TimeSpan.FromSeconds(BitConverter.ToSingle(input.Slice(5, 4)))
                 };
             }
 
@@ -75,7 +76,7 @@ namespace S7evemetry.Core.Packets.F1
             {
                 data.EventDetails = new Penalty
                 {
-                    PenaltyType = input[4],
+                    PenaltyType = (PenaltyType)input[4],
                     InfringementType = input[5],
                     VehicleIndex = input[6],
                     OtherVehicleIndex = input[7],

@@ -15,9 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S7evemetry.F1_2018", "S7eve
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S7evemetry.Console", "..\examples\S7evemetry.Console\S7evemetry.Console.csproj", "{98E75D35-AC3C-4B77-806A-90205E89AE30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S7evemetry.FH4", "S7evemetry.FH4\S7evemetry.FH4.csproj", "{993F642D-20B4-471C-B0C0-E7CDDD5ADD3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S7evemetry.FH4", "S7evemetry.FH4\S7evemetry.FH4.csproj", "{993F642D-20B4-471C-B0C0-E7CDDD5ADD3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S7evemetry.FM7", "S7evemetry.FM7\S7evemetry.FM7.csproj", "{A8CEDE4B-03EE-46D0-80D5-A1EB27822A8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S7evemetry.FM7", "S7evemetry.FM7\S7evemetry.FM7.csproj", "{A8CEDE4B-03EE-46D0-80D5-A1EB27822A8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S7evemetry.Tests", "..\tests\S7evemetry.Tests\S7evemetry.Tests.csproj", "{34925421-B313-45DE-A10B-5E569A900979}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{A8CEDE4B-03EE-46D0-80D5-A1EB27822A8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8CEDE4B-03EE-46D0-80D5-A1EB27822A8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8CEDE4B-03EE-46D0-80D5-A1EB27822A8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34925421-B313-45DE-A10B-5E569A900979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34925421-B313-45DE-A10B-5E569A900979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34925421-B313-45DE-A10B-5E569A900979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34925421-B313-45DE-A10B-5E569A900979}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

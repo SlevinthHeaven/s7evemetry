@@ -59,10 +59,8 @@ namespace S7evemetry.Console
         }
 
 
-        protected virtual string GetRaceTimeValue(float time)
+        protected virtual string GetRaceTimeValue(TimeSpan ts)
         {
-            TimeSpan ts = TimeSpan.FromSeconds(time);
-
             string format = ts.Days > 0
                 ? "d'.'hh':'mm':'ss'.'fff"
                 : ts.Hours > 0

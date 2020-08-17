@@ -18,9 +18,7 @@ namespace S7evemetry.F1_2019.Readers
 
             if (packetHeader.PacketId != PacketType.CarTelemetry) return null;
 
-            if (input.Length != packetHeader.Size +
-                                (packetHeader.GridSize * CarTelemetry.Size) +
-                                CarTelemetryData.Size)
+            if (input.Length != (packetHeader.GridSize * CarTelemetry.Size) + CarTelemetryData.Size)
             {
                 return null;
             }

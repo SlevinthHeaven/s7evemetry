@@ -23,7 +23,7 @@
                 9 => "Cobblestone",
                 10 => "Metal",
                 11 => "Ridged",
-                _ => "",
+                _ => "Unknown"
             };
         }
     }

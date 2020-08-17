@@ -9,8 +9,8 @@ namespace S7evemetry.Core.Structures.EventDetails
     public class FastestLap : EventDetailsCommon
     {
         /// <summary>
-        /// LapTime
+        /// Lap time is in seconds
         /// </summary>
-        public float LapTime { get; set; }
+        public TimeSpan LapTime { get; set; }
     }
 }

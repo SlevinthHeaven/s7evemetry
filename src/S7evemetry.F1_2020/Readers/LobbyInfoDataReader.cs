@@ -17,7 +17,7 @@ namespace S7evemetry.F1_2020.Readers
 
 			if (packetHeader.PacketId != PacketType.LobbyInfo) return null;
 
-			if (input.Length != packetHeader.Size +
+			if (input.Length != 
 								(packetHeader.GridSize * LobbyInfo.Size) +
 								LobbyInfoData.Size)
 			{
