@@ -9,22 +9,24 @@
         /// <returns>String representing the name of the Surface</returns>
         public static string GetSurfaceById(int id)
         {
-            return id switch
+            string? result;
+            switch (id)
             {
-                0 => "Tarmac",
-                1 => "Rumble strip",
-                2 => "Concrete",
-                3 => "Rock",
-                4 => "Gravel",
-                5 => "Mud",
-                6 => "Sand",
-                7 => "Grass",
-                8 => "Water",
-                9 => "Cobblestone",
-                10 => "Metal",
-                11 => "Ridged",
-                _ => "Unknown"
-            };
+                case 0: result = "Tarmac"; break;
+                case 1: result = "Rumble strip"; break;
+                case 2: result = "Concrete"; break;
+                case 3: result = "Rock"; break;
+                case 4: result = "Gravel"; break;
+                case 5: result = "Mud"; break;
+                case 6: result = "Sand"; break;
+                case 7: result = "Grass"; break;
+                case 8: result = "Water"; break;
+                case 9: result = "Cobblestone"; break;
+                case 10: result = "Metal"; break;
+                case 11: result = "Ridged"; break;
+                default: result = "Unknown"; break;
+            }
+            return result;
         }
     }
 }

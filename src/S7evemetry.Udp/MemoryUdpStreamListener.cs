@@ -9,34 +9,34 @@ using System.Threading.Tasks;
 namespace S7evemetry.Udp
 {
     public class MemoryUdpStreamListener : IDisposable, IObservable<Memory<byte>>
-	{
-		private readonly UdpClient _udpClient;
-		private readonly ICollection<IObserver<Memory<byte>>> _observers;
+    {
+        private readonly UdpClient _udpClient;
+        private readonly ICollection<IObserver<Memory<byte>>> _observers;
 
-		private IPEndPoint _serverEndPoint;
-		private Memory<byte>? _lastData;
+        private IPEndPoint _serverEndPoint;
+        private Memory<byte>? _lastData;
 
-		public MemoryUdpStreamListener(int port, IPAddress serverIpAddress)
-		{
-			_udpClient = new UdpClient(port);
-			_observers = new List<IObserver<Memory<byte>>>();
-			_serverEndPoint = new IPEndPoint(serverIpAddress, 0);
-			_lastData = null;
-		}
+        public MemoryUdpStreamListener(int port, IPAddress serverIpAddress)
+        {
+            _udpClient = new UdpClient(port);
+            _observers = new List<IObserver<Memory<byte>>>();
+            _serverEndPoint = new IPEndPoint(serverIpAddress, 0);
+            _lastData = null;
+        }
 
-		public void Close()
-		{
-			_udpClient.Close();
-		}
+        public void Close()
+        {
+            _udpClient.Close();
+        }
 
-		public void Dispose()
-		{
-			_udpClient.Dispose();
-		}
+        public void Dispose()
+        {
+            _udpClient.Dispose();
+        }
 
-		public IDisposable Subscribe(IObserver<Memory<byte>> observer)
-		{
-            if (_observers.Contains(observer)) 
+        public IDisposable Subscribe(IObserver<Memory<byte>> observer)
+        {
+            if (_observers.Contains(observer))
                 return new MemoryUdpStreamUnsubscriber(_observers, observer);
 
             _observers.Add(observer);
@@ -46,33 +46,33 @@ namespace S7evemetry.Udp
                 observer.OnNext(_lastData.Value);
             }
             return new MemoryUdpStreamUnsubscriber(_observers, observer);
-		}
+        }
 
-		protected virtual void NotifyData(Memory<byte> data)
-		{
-			foreach (var observer in _observers)
-			{
-				observer.OnNext(data);
-			}
-		}
+        protected virtual void NotifyData(Memory<byte> data)
+        {
+            foreach (var observer in _observers)
+            {
+                observer.OnNext(data);
+            }
+        }
 
-		protected virtual void NotifyError(Exception error)
-		{
-			foreach (var observer in _observers)
-			{
-				observer.OnError(error);
-			}
-		}
+        protected virtual void NotifyError(Exception error)
+        {
+            foreach (var observer in _observers)
+            {
+                observer.OnError(error);
+            }
+        }
 
-		protected virtual void NotifyCompletion()
-		{
-			foreach (var observer in _observers)
-			{
-				observer.OnCompleted();
-			}
-		}
+        protected virtual void NotifyCompletion()
+        {
+            foreach (var observer in _observers)
+            {
+                observer.OnCompleted();
+            }
+        }
 
-		public void Listen(CancellationToken cancellation)
+        public void Listen(CancellationToken cancellation)
         {
             Task.Factory.StartNew(async () =>
             {
@@ -94,18 +94,18 @@ namespace S7evemetry.Udp
 
                         _udpClient.Close();
                         break;
-					}
+                    }
                     catch (ObjectDisposedException)
                     {
                         // UDP client has been closed previously to abort connect/receive
                         // no need to notify observers or throw exception
                         return;
                     }
-					catch (Exception ex)
+                    catch (Exception ex)
                     {
                         NotifyError(ex);
                         throw;
-					}
+                    }
                 }
 
                 // end of notifications
@@ -115,30 +115,5 @@ namespace S7evemetry.Udp
                 cancellation.ThrowIfCancellationRequested();
             }, TaskCreationOptions.LongRunning);
         }
-
-		private void ReceiveCallback(IAsyncResult asyncResult)
-		{
-			byte[] data;
-
-			try
-			{
-				_lastData = data = _udpClient.EndReceive(asyncResult, ref _serverEndPoint);
-			}
-			catch (ObjectDisposedException)
-			{
-				// UDP client has been closed previously to abort connect/receive
-				// no need to notify observers or throw exception
-				return;
-			}
-			catch (Exception ex)
-			{
-				// fatal exception: notify observers
-				NotifyError(ex);
-				throw;
-			}
-
-			// success reading
-			NotifyData(data);
-		}
-	}
+    }
 }

@@ -10,37 +10,40 @@
         /// <returns>String representing the name of the Track</returns>
         public static string GetTrackById(int id)
         {
-            return id switch
+            var result = "Unknown";
+            switch (id)
             {
-                0 => "Melbourne",
-                1 => "Paul Ricard",
-                2 => "Shanghai",
-                3 => "Sakhir (Bahrain)",
-                4 => "Catalunya",
-                5 => "Monaco",
-                6 => "Montreal",
-                7 => "Silverstone",
-                8 => "Hockenheim",
-                9 => "Hungaroring",
-                10 => "Spa",
-                11 => "Monza",
-                12 => "Singapore",
-                13 => "Suzuka",
-                14 => "Abu Dhabi",
-                15 => "Texas",
-                16 => "Brazil",
-                17 => "Austria",
-                18 => "Sochi",
-                19 => "Mexico",
-                20 => "Baku (Azerbaijan)",
-                21 => "Sakhir Short",
-                22 => "Silverstone Short",
-                23 => "Texas Short",
-                24 => "Suzuka Short",
-                25 => "Hanoi",
-                26 => "Zandvoort",
-                _ => "Unknown",
-            };
+                case 0: result = "Melbourne"; break;
+                case 1: result = "Paul Ricard"; break;
+                case 2: result = "Shanghai"; break;
+                case 3: result = "Sakhir (Bahrain)"; break;
+                case 4: result = "Catalunya"; break;
+                case 5: result = "Monaco"; break;
+                case 6: result = "Montreal"; break;
+                case 7: result = "Silverstone"; break;
+                case 8: result = "Hockenheim"; break;
+                case 9: result = "Hungaroring"; break;
+                case 10: result = "Spa"; break;
+                case 11: result = "Monza"; break;
+                case 12: result = "Singapore"; break;
+                case 13: result = "Suzuka"; break;
+                case 14: result = "Abu Dhabi"; break;
+                case 15: result = "Texas"; break;
+                case 16: result = "Brazil"; break;
+                case 17: result = "Austria"; break;
+                case 18: result = "Sochi"; break;
+                case 19: result = "Mexico"; break;
+                case 20: result = "Baku (Azerbaijan)"; break;
+                case 21: result = "Sakhir Short"; break;
+                case 22: result = "Silverstone Short"; break;
+                case 23: result = "Texas Short"; break;
+                case 24: result = "Suzuka Short"; break;
+                case 25: result = "Hanoi"; break;
+                case 26: result = "Zandvoort"; break;
+                default: result = "Unknown"; break;
+            }
+            return result;
         }
-    }
+
+    } 
 }

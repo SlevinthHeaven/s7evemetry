@@ -10,12 +10,6 @@ namespace S7evemetry.Core.Packets.F1
     /// </summary>
     public abstract class CarTelemetryDataCommon
     {
-        /// <summary>
-        /// Bit flags specifying which buttons are being pressed currently
-        /// </summary>
-        public Buttons ButtonStatus { get; set; }
-
-        public static int Size { get; } = 4;
 
         /// <summary>
         /// Reads the common data for CarTelemetryData packets.
@@ -25,10 +19,9 @@ namespace S7evemetry.Core.Packets.F1
         /// The Span of byte which contain the common Telemetry data packet
         /// </param>
         /// <returns>Instance of T with deserialized data from input</returns>
-        protected static T Read<T>(Span<byte> input) where T : CarTelemetryDataCommon, new()
+        protected static T? Read<T>(Span<byte> input) where T : CarTelemetryDataCommon, new()
         {
-            if (input.IsEmpty) return new T();
-
+            if (input.IsEmpty)return null;
 
             return new T
             {
@@ -36,5 +29,12 @@ namespace S7evemetry.Core.Packets.F1
             };
 
         }
+
+        /// <summary>
+        /// Bit flags specifying which buttons are being pressed currently
+        /// </summary>
+        public Buttons ButtonStatus { get; set; }
+
+        public static int Size { get; } = 4;
     }
 }

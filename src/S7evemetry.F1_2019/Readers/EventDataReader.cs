@@ -1,5 +1,6 @@
 ﻿using S7evemetry.Core.Enums.F1;
 using S7evemetry.Core.Packets.F1;
+using S7evemetry.F1_2019.Packets;
 using S7evemetry.F1_2019.Structures;
 using System;
 
@@ -34,7 +35,11 @@ namespace S7evemetry.F1_2019.Readers
 
 			};
 
-			packet.Data = EventData.Read(input);
+			var eventData = EventData.Read(input);
+
+			if (eventData == null) return null;
+
+			packet.Data = eventData;
 
 			return packet;
 		}

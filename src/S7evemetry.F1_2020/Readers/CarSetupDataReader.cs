@@ -1,6 +1,5 @@
 ﻿using S7evemetry.Core.Enums.F1;
 using S7evemetry.Core.Packets.F1;
-using S7evemetry.Core.Structures;
 using S7evemetry.F1_2020.Structures;
 using System;
 
@@ -17,7 +16,7 @@ namespace S7evemetry.F1_2020.Readers
 
             if (packetHeader.PacketId != PacketType.CarSetups) return null;
 
-            if (input.Length != 
+            if (input.Length !=
                                 (packetHeader.GridSize * CarSetup.Size) +
                                 CarSetupData.Size)
             {

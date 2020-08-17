@@ -1,15 +1,14 @@
-﻿using S7evemetry.Core.Structures;
+﻿using S7evemetry.Core.Enums.F1;
 using S7evemetry.Core.Packets.F1;
-using System;
 using S7evemetry.F1_2018.Packets;
 using S7evemetry.F1_2018.Structures;
-using S7evemetry.Core.Enums.F1;
+using System;
 
 namespace S7evemetry.F1_2018.Readers
 {
     public class SessionDataReader
-	{
-		public PacketData<PacketHeader, SessionData>? Read(Span<byte> input, PacketHeader packetHeader)
+    {
+        public PacketData<PacketHeader, SessionData>? Read(Span<byte> input, PacketHeader packetHeader)
         {
             if (packetHeader == null)
             {
@@ -24,13 +23,13 @@ namespace S7evemetry.F1_2018.Readers
             }
 
             var packet = new PacketData<PacketHeader, SessionData>()
-			{
-				Header = packetHeader
-			};
+            {
+                Header = packetHeader
+            };
 
-			packet.Data = SessionData.Read(input);
+            packet.Data = SessionData.Read(input);
 
-			return packet;
-		}
-	}
+            return packet;
+        }
+    }
 }
