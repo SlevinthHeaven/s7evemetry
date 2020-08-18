@@ -11,6 +11,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\src\S7evemetry.F1_2017\S7evemetry.F1_2017.csproj" />
     <ProjectReference Include="..\..\src\S7evemetry.F1_2019\S7evemetry.F1_2019.csproj" />
     <ProjectReference Include="..\..\src\S7evemetry.Udp\S7evemetry.Udp.csproj" />
   </ItemGroup>

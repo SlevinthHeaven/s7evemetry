@@ -1,15 +1,15 @@
-﻿using S7evemetry.Core;
-using S7evemetry.Core.Packets.F1;
-using S7evemetry.F1_2018.Structures;
+﻿
+using S7evemetry.Core;
+using S7evemetry.F1_2017.Packets;
 using System;
 
-namespace S7evemetry.F1_2018.Observers
+namespace S7evemetry.F1_2017.Observers
 {
-    public abstract class LapDataObserver : IObserver<PacketData<PacketHeader, LapData, CarLap>>
+    public abstract class UdpPacketDataObserver : IObserver<UdpPacketData>
     {
         private IDisposable? _unsubscriber;
 
-        public void Subscribe(IObservable<PacketData<PacketHeader, LapData, CarLap>> listener)
+        public void Subscribe(IObservable<UdpPacketData> listener)
         {
             _unsubscriber = listener.Subscribe(this);
         }
@@ -29,6 +29,6 @@ namespace S7evemetry.F1_2018.Observers
 
         public abstract void OnError(Exception error);
 
-        public abstract void OnNext(PacketData<PacketHeader, LapData, CarLap> value);
+        public abstract void OnNext(UdpPacketData value);
     }
 }
