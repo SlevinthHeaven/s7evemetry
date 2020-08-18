@@ -2,7 +2,7 @@
 {
     public class UdpListenerSettings
     {
-        public int Port { get; set; }
-        public string Address { get; set; } = string.Empty;
+        public int Port { get; set; } = 20777;
+        public string Address { get; set; } = "127.0.0.1";
     }
 }

@@ -27,7 +27,7 @@ namespace S7evemetry.Console
 				})
 				.ConfigureServices((hostingContext, services) =>
 				{
-					services.Configure<UdpListenerSettings>(hostingContext.Configuration.GetSection("UdpSettings"));
+					//services.Configure<UdpListenerSettings>(hostingContext.Configuration.GetSection("UdpSettings"));
 					services.AddSingleton<F1_2017Listener>();
 					services.AddSingleton<F1_2017_Telemetry>();
 					services.AddSingleton<F1_2017_DataVisualizer>();
