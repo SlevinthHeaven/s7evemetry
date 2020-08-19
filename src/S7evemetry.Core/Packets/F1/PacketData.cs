@@ -16,7 +16,7 @@ namespace S7evemetry.Core.Packets.F1
     {
         public PacketHeader Header { get; set; } = new PacketHeader();
 
-        public List<CarPacketData> CarData { get; set; } = new List<CarPacketData>();
+        public List<CarPacketData> CarData { get; } = new List<CarPacketData>();
 
         public MainPacketData Data { get; set; } = new MainPacketData();
     }

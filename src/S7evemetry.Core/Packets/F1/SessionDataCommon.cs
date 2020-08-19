@@ -124,7 +124,7 @@ namespace S7evemetry.Core.Packets.F1
 		/// <summary>
 		/// List of marshal zones – max 21
 		/// </summary>
-		public MarshalZone[] MarshalZones { get; set; } = new MarshalZone[21];
+		public MarshalZone[] MarshalZones { get; } = new MarshalZone[21];
 
 		/// <summary>
 		/// 0 = no safety car, 1 = full safety car, 2 = virtual safety car
@@ -139,7 +139,7 @@ namespace S7evemetry.Core.Packets.F1
 		/// <summary>
 		/// Size in bytes of the base data contained in the SessionData PacketType
 		/// </summary>
-		public static int Size { get; set; } = 126;
+		public static int Size { get; } = 126;
 
 		/// <summary>
 		/// Reads the common data for SessionData packets.
@@ -149,9 +149,9 @@ namespace S7evemetry.Core.Packets.F1
 		/// The Span of byte which contain the common Session data packet
 		/// </param>
 		/// <returns>Instance of T with deserialized data from input</returns>
-		protected static T Read<T>(Span<byte> input) where T : SessionDataCommon, new()
+		protected static T? Read<T>(Span<byte> input) where T : SessionDataCommon, new()
 		{
-			if (input.Length != 126) return new T();
+			if (input.Length != 126) return null;
 			var output = new T
 			{
 				Weather = input[0],
@@ -164,19 +164,19 @@ namespace S7evemetry.Core.Packets.F1
 				Formula = input[8],
 				SessionTimeLeft = BinaryPrimitives.ReadUInt16LittleEndian(input.Slice(9, 2)),
 				SessionDuration = BinaryPrimitives.ReadUInt16LittleEndian(input.Slice(11, 2)),
-				PitSpeedLimit = input[12],
-				GamePaused = input[13],
-				IsSpectating = input[14],
-				SpectatorCarIndex = input[15],
-				SliProNativeSupport = input[16],
-				NumMarshalZones = input[17],
+				PitSpeedLimit = input[13],
+				GamePaused = input[14],
+				IsSpectating = input[15],
+				SpectatorCarIndex = input[16],
+				SliProNativeSupport = input[17],
+				NumMarshalZones = input[18],
 				SafetyCarStatus = input[124],
 				NetworkGame = input[125]
 			};
 
 			for (var i = 0; i < 21; i++)
 			{
-				output.MarshalZones[i] = MarshalZone.Read(input.Slice(18 + (i * MarshalZone.Size), MarshalZone.Size));
+				output.MarshalZones[i] = MarshalZone.Read(input.Slice(19 + (i * MarshalZone.Size), MarshalZone.Size));
 			}
 			return output;
 

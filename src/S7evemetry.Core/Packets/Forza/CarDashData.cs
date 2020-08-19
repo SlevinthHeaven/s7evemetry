@@ -44,8 +44,9 @@ namespace S7evemetry.Core.Packets.Forza
 		public sbyte NormalizedAIBrakeDifference { get; set; }
 
 		public static int Size { get; } = 79;
-		public static CarDashData Read(Span<byte> input)
+		public static CarDashData? Read(Span<byte> input)
 		{
+			if (input.Length != Size) return null;
 			return new CarDashData
 			{
 				PositionX = BitConverter.ToSingle(input.Slice(0, 4)), //4

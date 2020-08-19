@@ -27,7 +27,9 @@ namespace S7evemetry.F1_2018.Readers
                 Header = packetHeader
             };
 
-            packet.Data = SessionData.Read(input);
+            var data = SessionData.Read(input);
+            if (data == null) return null;
+            packet.Data = data;
 
             return packet;
         }

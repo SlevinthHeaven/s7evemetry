@@ -117,8 +117,10 @@ namespace S7evemetry.Core.Packets.Forza
 		public int NumCylinders;
 
 		public static int Size { get; } = 232;
-		public static SledData Read(Span<byte> input)
+		public static SledData? Read(Span<byte> input)
 		{
+			if (input.Length != Size) return null;
+
 			return new SledData
 			{
 				IsRaceOn = BinaryPrimitives.ReadInt32LittleEndian(input.Slice(0, 4)), //4

@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using Moq;
 using S7evemetry.Core.Enums.F1;
 using S7evemetry.Core.Packets.F1;
 using S7evemetry.Tests.Core.Packets.F1.MockPackets;

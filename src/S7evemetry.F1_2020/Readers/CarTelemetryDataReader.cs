@@ -34,7 +34,9 @@ namespace S7evemetry.F1_2020.Readers
                 packet.CarData.Add(CarTelemetry.Read(input.Slice((i * CarTelemetry.Size), CarTelemetry.Size)));
             }
 
-            packet.Data = CarTelemetryData.Read(input.Slice(packet.Header.GridSize * CarTelemetry.Size));
+            var data = CarTelemetryData.Read(input.Slice(packet.Header.GridSize * CarTelemetry.Size));
+            if (data == null) return null;
+            packet.Data = data;
 
             return packet;
         }

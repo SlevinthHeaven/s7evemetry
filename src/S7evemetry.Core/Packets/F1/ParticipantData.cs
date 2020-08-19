@@ -22,8 +22,9 @@ namespace S7evemetry.Core.Packets.F1
         /// </summary>
         /// <param name="input">A Span of byte to be deserialized</param>
         /// <returns>The ParticipantData</returns>
-        public static ParticipantData Read(Span<byte> input)
+        public static ParticipantData? Read(Span<byte> input)
         {
+            if (input.Length != Size) return null;
             return new ParticipantData
             {
                 NumActiveCars = input[0],

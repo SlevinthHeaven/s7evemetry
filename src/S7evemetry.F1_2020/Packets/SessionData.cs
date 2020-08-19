@@ -10,13 +10,14 @@ namespace S7evemetry.F1_2020.Packets
         public byte NumberOfWeatherForecastSamples; // Number of weather samples to follow
         public WeatherForecastSample[] WeatherForecastSamples { get; set; } = new WeatherForecastSample[20];   // Array of weather forecast samples
 
-        public static SessionData Read(Span<byte> input)
+        public static SessionData? Read(Span<byte> input)
         {
+            if (input.Length != 227) return null;
 
-            if (input.Length != 227) return new SessionData();
-            var baseData = Read<SessionData>(input);
+            var baseData = Read<SessionData>(input.Slice(0, 126));
 
-            //add new values
+            if (baseData == null) return null;
+
             baseData.NumberOfWeatherForecastSamples = input[126];
 
             for (var i = 0; i < 20; i++)

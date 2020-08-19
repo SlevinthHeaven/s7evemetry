@@ -28,9 +28,11 @@ namespace S7evemetry.F1_2020.Packets
         /// </summary>
         public sbyte SuggestedGear { get; set; }
 
-        public static CarTelemetryData Read(Span<byte> input)
+        public static CarTelemetryData? Read(Span<byte> input)
         {
             var telemData =  Read<CarTelemetryData>(input);
+
+            if (telemData == null) return null;
 
             telemData.MfdPanelIndex = input[4];
             telemData.MfdPanelIndexSecondaryPlayer = input[5];

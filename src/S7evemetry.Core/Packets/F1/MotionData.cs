@@ -97,8 +97,9 @@ namespace S7evemetry.Core.Packets.F1
         /// </summary>
         /// <param name="input">A Span of byte to be deserialized</param>
         /// <returns>The MotionData</returns>
-        public static MotionData Read(Span<byte> input)
+        public static MotionData? Read(Span<byte> input)
         {
+            if (input.Length != Size) return null;
             var _motionData = new MotionData
             {
                 SuspensionPosition = new float[] {

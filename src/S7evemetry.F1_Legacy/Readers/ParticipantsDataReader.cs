@@ -32,7 +32,9 @@ namespace S7evemetry.F1_Legacy.Readers
 				packet.CarData.Add(Participant.Read(input.Slice(1 + (i * Participant.Size), Participant.Size)));
 			}
 
-			packet.Data = ParticipantData.Read(input.Slice(0, ParticipantData.Size));
+			var data = ParticipantData.Read(input.Slice(0, ParticipantData.Size));
+			if (data == null) return null;
+			packet.Data = data;
 
 			return packet;
 		}
