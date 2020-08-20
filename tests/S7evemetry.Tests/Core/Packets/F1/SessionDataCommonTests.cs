@@ -1,10 +1,7 @@
 ﻿using FluentAssertions;
-using S7evemetry.Core.Enums.F1;
-using S7evemetry.Core.Packets.F1;
 using S7evemetry.Tests.Core.Packets.F1.MockPackets;
 using System;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace S7evemetry.Tests.Core.Packets.F1
@@ -30,7 +27,7 @@ namespace S7evemetry.Tests.Core.Packets.F1
         [Fact]
         public void SessionDataCommonRead()
         {
-            byte[] bytes = new byte[] { 
+            byte[] bytes = new byte[] {
                 1,2,3,4,5,0,6,7,0, 12,0, 13,0,12,0,1,1,0,21
             };
 
@@ -64,6 +61,7 @@ namespace S7evemetry.Tests.Core.Packets.F1
                 result.NumMarshalZones.Should().Be(21);
 
                 result.MarshalZones[0].ZoneFlag.Should().Be(0);
+                result.MarshalZones[0].ZoneStart.Should().Be(0.1f);
                 result.MarshalZones.Length.Should().Be(21);
                 result.SafetyCarStatus.Should().Be(0);
                 result.NetworkGame.Should().Be(0);
