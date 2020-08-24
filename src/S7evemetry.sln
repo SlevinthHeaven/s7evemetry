@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S7evemetry.F1_Legacy", "S7e
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S7evemetry.F1_2017", "S7evemetry.F1_2017\S7evemetry.F1_2017.csproj", "{1765BC09-0B26-469D-B058-74D9941DC83D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S7evemetry", "S7evemetry\S7evemetry.csproj", "{501FFEA3-21F4-479C-978A-8D4F1CD31B48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{1765BC09-0B26-469D-B058-74D9941DC83D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1765BC09-0B26-469D-B058-74D9941DC83D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1765BC09-0B26-469D-B058-74D9941DC83D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{501FFEA3-21F4-479C-978A-8D4F1CD31B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{501FFEA3-21F4-479C-978A-8D4F1CD31B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{501FFEA3-21F4-479C-978A-8D4F1CD31B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{501FFEA3-21F4-479C-978A-8D4F1CD31B48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

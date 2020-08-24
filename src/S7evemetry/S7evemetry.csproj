@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <nullable>enable</nullable>
+    <LangVersion>8.0</LangVersion>
+    <PackageId>S7evemetry</PackageId>
+    <Version>0.1.1-alpha1</Version>
+    <Author>Andy Morrell (LuckyNoS7evin)</Author>
+    <Authors>Andy Morrell (LuckyNoS7evin)</Authors>
+    <Company>Slevinth Heaven Ltd</Company>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Copyright>Slevinth Heaven Ltd 2020</Copyright>
+    <PackageProjectUrl>https://github.com/SlevinthHeaven/s7evemetry</PackageProjectUrl>
+    <Description>An sdk for receiving telemetry data from multiple games</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\S7evemetry.Core\S7evemetry.Core.csproj" />
+    <ProjectReference Include="..\S7evemetry.F1_2017\S7evemetry.F1_2017.csproj" />
+    <ProjectReference Include="..\S7evemetry.F1_2018\S7evemetry.F1_2018.csproj" />
+    <ProjectReference Include="..\S7evemetry.F1_2019\S7evemetry.F1_2019.csproj" />
+    <ProjectReference Include="..\S7evemetry.F1_2020\S7evemetry.F1_2020.csproj" />
+    <ProjectReference Include="..\S7evemetry.F1_Legacy\S7evemetry.F1_Legacy.csproj" />
+    <ProjectReference Include="..\S7evemetry.FH4\S7evemetry.FH4.csproj" />
+    <ProjectReference Include="..\S7evemetry.FM7\S7evemetry.FM7.csproj" />
+    <ProjectReference Include="..\S7evemetry.Udp\S7evemetry.Udp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+</Project>

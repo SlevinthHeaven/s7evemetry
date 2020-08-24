@@ -115,8 +115,9 @@ namespace S7evemetry.Core.Structures
         /// </summary>
         /// <param name="input">A Span of byte to be deserialized</param>
         /// <returns>The CarMotion</returns>
-        public static CarMotion Read(Span<byte> input)
+        public static CarMotion? Read(Span<byte> input)
         {
+            if (input.Length != Size) return null;
             return new CarMotion
             {
                 WorldPositionX = BitConverter.ToSingle(input.Slice(0, 4)),

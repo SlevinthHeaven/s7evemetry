@@ -12,12 +12,11 @@ namespace S7evemetry.F1_2018.Structures
 
 		public static CarLap Read(Span<byte> input)
 		{
-            var size2019 = 12;
-            var start = 8;
-            var lap = Read<CarLap>( input, size2019 + start);
-            lap.BestLapTime = BitConverter.ToSingle(input.Slice(start, 4)); //4
-            lap.Sector1Time = BitConverter.ToSingle(input.Slice(start + 4, 4)); //8
-            lap.Sector2Time = BitConverter.ToSingle(input.Slice(start + 8, 4)); //12
+            var size2018 = 12;
+            var lap = Read<CarLap>(input, size2018);
+            lap.BestLapTime = BitConverter.ToSingle(input.Slice(GapByte, 4)); //4
+            lap.Sector1Time = BitConverter.ToSingle(input.Slice(GapByte + 4, 4)); //8
+            lap.Sector2Time = BitConverter.ToSingle(input.Slice(GapByte + 8, 4)); //12
             return lap;
 		}
 	}

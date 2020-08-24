@@ -82,6 +82,11 @@ namespace S7evemetry.Core.Structures
 		/// </summary>
 		public ResultStatus ResultStatus { get; set; }
 
+
+		public static int Size { get; } = 29;
+
+		public static int GapByte { get; } = 8;
+
 		/// <summary>
 		/// Reads the common data for CarLap.
 		/// </summary>
@@ -91,25 +96,29 @@ namespace S7evemetry.Core.Structures
 		/// </param>
 		/// <param name="gapSize">There is a gap where extra data should be placed, instead of 2 spans we supply a gap</param>
 		/// <returns>Instance of T with deserialized data from input</returns>
-		protected static T Read<T>(Span<byte> input, int gapSize) where T : CarLapCommon, new()
+		protected static T? Read<T>(Span<byte> input, int gapSize) where T : CarLapCommon, new()
 		{
-            var lap = new T
+			if (input.Length != Size + gapSize) return null;
+
+			gapSize += GapByte;
+
+			var lap = new T
             {
                 LastLapTime = BitConverter.ToSingle(input.Slice(0, 4)), // 4 byte
-                CurrentLapTime = BitConverter.ToSingle(input.Slice(4, 4)), // 4 byte
+                CurrentLapTime = BitConverter.ToSingle(input.Slice(4, 4)), // 8 byte
 
-                LapDistance = BitConverter.ToSingle(input.Slice(gapSize, 4)), // 4 byte
-                TotalDistance = BitConverter.ToSingle(input.Slice(gapSize + 4, 4)), // 4 byte
-                SafetyCarDelta = BitConverter.ToSingle(input.Slice(gapSize + 8, 4)), // 4 byte
-                CarPosition = input[gapSize + 12],
-                CurrentLapNum = input[gapSize + 13],
-                PitStatus = (PitStatus)input[gapSize + 14],
-                Sector = (Sector)input[gapSize + 15],
-                CurrentLapInvalid = Convert.ToBoolean(input[gapSize + 16]),
-                Penalties = input[gapSize + 17],
-                GridPosition = input[gapSize + 18],
-                DriverStatus = (DriverStatus)input[gapSize + 19],
-                ResultStatus = (ResultStatus)input[gapSize + 20]
+                LapDistance = BitConverter.ToSingle(input.Slice(gapSize, 4)), // 12 byte
+                TotalDistance = BitConverter.ToSingle(input.Slice(gapSize + 4, 4)), // 16 byte
+                SafetyCarDelta = BitConverter.ToSingle(input.Slice(gapSize + 8, 4)), // 20 byte
+                CarPosition = input[gapSize + 12], //21
+                CurrentLapNum = input[gapSize + 13], //22
+                PitStatus = (PitStatus)input[gapSize + 14], //23
+                Sector = (Sector)input[gapSize + 15], //24
+                CurrentLapInvalid = Convert.ToBoolean(input[gapSize + 16]), //25
+                Penalties = input[gapSize + 17], //26
+                GridPosition = input[gapSize + 18], //27
+                DriverStatus = (DriverStatus)input[gapSize + 19], //28
+                ResultStatus = (ResultStatus)input[gapSize + 20] //29 
             };
 
             return lap;
