@@ -19,8 +19,17 @@ namespace S7evemetry.FH4
 
 			var spanData = new Span<byte>(input);
 
-			output.Sled = SledData.Read(spanData.Slice(0, SledData.Size));
-			output.CarDash = CarDashData.Read(spanData.Slice(SledData.Size + 12, CarDashData.Size));
+			var sled = SledData.Read(spanData.Slice(0, SledData.Size));
+			if(sled != null)
+			{
+				output.Sled = sled;
+			}
+
+			var carDash = CarDashData.Read(spanData.Slice(SledData.Size + 12, CarDashData.Size));
+			if (carDash != null)
+			{
+				output.CarDash = carDash;
+			}
 
 
 			return output;

@@ -20,7 +20,11 @@ namespace S7evemetry.FM7
 
 			var spanData = new Span<byte>(input);
 
-			output.Sled = SledData.Read(spanData.Slice(0, SledData.Size));
+			var sled = SledData.Read(spanData.Slice(0, SledData.Size));
+			if (sled != null)
+			{
+				output.Sled = sled;
+			}
 
 			return output;
 		}
@@ -33,8 +37,17 @@ namespace S7evemetry.FM7
 
 			var spanData = new Span<byte>(input);
 
-			output.Sled = SledData.Read(spanData.Slice(0, SledData.Size));
-			output.CarDash = CarDashData.Read(spanData.Slice(SledData.Size, CarDashData.Size));
+			var sled = SledData.Read(spanData.Slice(0, SledData.Size));
+			if (sled != null)
+			{
+				output.Sled = sled;
+			}
+
+			var carDash = CarDashData.Read(spanData.Slice(SledData.Size, CarDashData.Size));
+			if (carDash != null)
+			{
+				output.CarDash = carDash;
+			}
 
 			return output;
 		}

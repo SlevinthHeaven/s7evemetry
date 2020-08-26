@@ -98,6 +98,9 @@ namespace S7evemetry.Core.Structures
         /// </summary>
         public float FuelLoad { get; set; }
 
+        public static int Size { get; } = 33;
+
+        public static int GapStartByte { get; } = 28;
 
         /// <summary>
         /// Reads the common data for CarSetup.
@@ -108,29 +111,33 @@ namespace S7evemetry.Core.Structures
         /// </param>
         /// <param name="gapSize">There is a gap where extra data should be placed, instead of 2 spans we supply a gap</param>
         /// <returns>Instance of T with deserialized data from input</returns>
-        protected static T Read<T>(Span<byte> input, int gapSize) where T: CarSetupCommon, new()
+        protected static T? Read<T>(Span<byte> input, int gapSize) where T: CarSetupCommon, new()
         {
+            if (input.Length != Size + gapSize) return null;
+
+            gapSize += GapStartByte;
+
             return new T
             {
                 FrontWing = input[0], // 1 byte
-                RearWing = input[1], // 1 byte
-                OnThrottle = input[2], // 1 byte
-                OffThrottle = input[3], // 1 byte
-                FrontCamber = BitConverter.ToSingle(input.Slice(4, 4)), // 4 byte
-                RearCamber = BitConverter.ToSingle(input.Slice(8, 4)), // 4 byte
-                FrontToe = BitConverter.ToSingle(input.Slice(12, 4)), // 4 byte
-                RearToe = BitConverter.ToSingle(input.Slice(16, 4)), // 4 byte
-                FrontSuspension = input[20], // 1 byte
-                RearSuspension = input[21], // 1 byte
-                FrontAntiRollBar = input[22], // 1 byte
-                RearAntiRollBar = input[23], // 1 byte
-                FrontSuspensionHeight = input[24], // 1 byte
-                RearSuspensionHeight = input[25], // 1 byte
-                BrakePressure = input[26], // 1 byte
-                BrakeBias = input[27], // 1 byte
+                RearWing = input[1], // 2 byte
+                OnThrottle = input[2], // 3 byte
+                OffThrottle = input[3], // 4 byte
+                FrontCamber = BitConverter.ToSingle(input.Slice(4, 4)), // 8 byte
+                RearCamber = BitConverter.ToSingle(input.Slice(8, 4)), // 12 byte
+                FrontToe = BitConverter.ToSingle(input.Slice(12, 4)), // 16 byte
+                RearToe = BitConverter.ToSingle(input.Slice(16, 4)), // 20 byte
+                FrontSuspension = input[20], // 21 byte
+                RearSuspension = input[21], // 22 byte
+                FrontAntiRollBar = input[22], // 23 byte
+                RearAntiRollBar = input[23], // 24 byte
+                FrontSuspensionHeight = input[24], // 25 byte
+                RearSuspensionHeight = input[25], // 26 byte
+                BrakePressure = input[26], // 27 byte
+                BrakeBias = input[27], // 28 byte
                 
-                Ballast = input[gapSize], // 1 byte
-                FuelLoad = BitConverter.ToSingle(input.Slice(gapSize + 1, 4)) // 4 byte
+                Ballast = input[gapSize], // 29 byte
+                FuelLoad = BitConverter.ToSingle(input.Slice(gapSize + 1, 4)) // 33 byte
             };
         }
     }

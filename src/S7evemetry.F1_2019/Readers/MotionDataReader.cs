@@ -29,10 +29,12 @@ namespace S7evemetry.F1_2019.Readers
 				Header = packetHeader
 
 			};
-			
+
 			for (var i = 0; i < packet.Header.GridSize; i++)
 			{
-				packet.CarData.Add(CarMotion.Read(input.Slice((i * CarMotion.Size), CarMotion.Size)));
+				var item = CarMotion.Read(input.Slice((i * CarMotion.Size), CarMotion.Size));
+				if (item == null) continue;
+				packet.CarData.Add(item);
 			}
 
 			var data = MotionData.Read(input.Slice(packet.Header.GridSize * CarMotion.Size, MotionData.Size));

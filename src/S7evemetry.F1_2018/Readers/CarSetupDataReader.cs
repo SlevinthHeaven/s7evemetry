@@ -28,7 +28,9 @@ namespace S7evemetry.F1_2018.Readers
 
             for (var i = 0; i < packet.Header.GridSize; i++)
             {
-                packet.CarData.Add(CarSetup.Read(input.Slice((i * CarSetup.Size), CarSetup.Size)));
+                var item = CarSetup.Read(input.Slice((i * CarSetup.Size), CarSetup.Size));
+                if (item == null) continue;
+                packet.CarData.Add(item);
             }
 
             packet.Data = new CarSetupData();

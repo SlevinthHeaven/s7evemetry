@@ -85,7 +85,7 @@ namespace S7evemetry.Core.Structures
 
 		public static int Size { get; } = 29;
 
-		public static int GapByte { get; } = 8;
+		public static int GapStartByte { get; } = 8;
 
 		/// <summary>
 		/// Reads the common data for CarLap.
@@ -100,7 +100,7 @@ namespace S7evemetry.Core.Structures
 		{
 			if (input.Length != Size + gapSize) return null;
 
-			gapSize += GapByte;
+			gapSize += GapStartByte;
 
 			var lap = new T
             {

@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\S7evemetry.Core\S7evemetry.Core.csproj" />
+    <ProjectReference Include="..\..\src\S7evemetry.F1_2020\S7evemetry.F1_2020.csproj" />
   </ItemGroup>
 
 </Project>

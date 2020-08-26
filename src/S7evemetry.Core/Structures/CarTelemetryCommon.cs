@@ -92,8 +92,9 @@ namespace S7evemetry.Core.Structures
 		/// The Span of byte which contain the common CarTelemetry data packet
 		/// </param>
 		/// <returns>Instance of T with deserialized data from input</returns>
-		public static T Read<T>(Span<byte> input) where T : CarTelemetryCommon, new()
+		public static T? Read<T>(Span<byte> input) where T : CarTelemetryCommon, new()
 		{
+			if (input.Length != Size) return null;
             return new T
 			{
 				Speed = BinaryPrimitives.ReadUInt16LittleEndian(input.Slice(0, 2)),

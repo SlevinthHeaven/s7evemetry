@@ -31,7 +31,9 @@ namespace S7evemetry.F1_2020.Readers
 
             for (var i = 0; i < packet.Header.GridSize; i++)
             {
-                packet.CarData.Add(CarLap.Read(input.Slice((i * CarLap.Size), CarLap.Size)));
+                var item = CarLap.Read(input.Slice((i * CarLap.Size), CarLap.Size));
+                if (item == null) continue;
+                packet.CarData.Add(item);
             }
 
             packet.Data = new LapData();

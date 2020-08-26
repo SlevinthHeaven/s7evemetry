@@ -1,11 +1,11 @@
-﻿using S7evemetry.Core.Structures;
+﻿using S7evemetry.Core.Packets.F1;
+using S7evemetry.Core.Structures;
 using System;
 
-namespace S7evemetry.F1_2018.Structures
+namespace S7evemetry.Tests.Core.Structures.MockStructures
 {
     public class CarTelemetry : CarTelemetryCommon
-	{
-        public static new int Size { get; } = 62;
+    {
         public static CarTelemetry? Read(Span<byte> input)
         {
             return Read<CarTelemetry>(input);

@@ -29,7 +29,9 @@ namespace S7evemetry.F1_Legacy.Readers
 
             for (var i = 0; i < packet.Header.GridSize; i++)
             {
-                packet.CarData.Add(CarTelemetry.Read(input.Slice((i * CarTelemetry.Size), CarTelemetry.Size)));
+                var item = CarTelemetry.Read(input.Slice((i * CarTelemetry.Size), CarTelemetry.Size));
+                if (item == null) continue;
+                packet.CarData.Add(item);
             }
 
             var data = CarTelemetryData.Read(input.Slice(packet.Header.GridSize * CarTelemetry.Size));
