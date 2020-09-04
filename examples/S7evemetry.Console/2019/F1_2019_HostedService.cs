@@ -21,12 +21,14 @@ namespace S7evemetry.Console._2019
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             _f1_2019_DataVisualizer.Start();
             return Task.CompletedTask;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             _f1_2019_DataVisualizer.Stop();
             return Task.CompletedTask;
         }

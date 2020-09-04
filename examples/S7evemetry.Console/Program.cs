@@ -7,6 +7,10 @@ using S7evemetry.Udp;
 using S7evemetry.F1_2019.Listeners;
 using S7evemetry.F1_2017.Listeners;
 using S7evemetry.Console._2017;
+using S7evemetry.Console.CosmosDemo;
+using S7evemetry.Console.Data;
+using Microsoft.Azure.Cosmos.Fluent;
+using S7evemetry.F1_2020.Listeners;
 
 namespace S7evemetry.Console
 {
@@ -23,22 +27,33 @@ namespace S7evemetry.Console
 				.ConfigureAppConfiguration((hostingContext, config) =>
 				{
 					config.SetBasePath(Directory.GetCurrentDirectory());
-					config.AddJsonFile("appsettings.json", true);
-				})
+                    config.AddJsonFile("appsettings.json", true);
+                })
 				.ConfigureServices((hostingContext, services) =>
 				{
-					//services.Configure<UdpListenerSettings>(hostingContext.Configuration.GetSection("UdpSettings"));
-					services.AddSingleton<F1_2017Listener>();
-					services.AddSingleton<F1_2017_Telemetry>();
-					services.AddSingleton<F1_2017_DataVisualizer>();
-					services.AddHostedService<F1_2017_HostedService>();
-					//services.AddSingleton<F1_2017Listener>();
-					//services.AddSingleton<F1_2019_Motion>(); 
-					//services.AddSingleton<F1_2019_Telemetry>();
-					//services.AddSingleton<F1_2019Listener>();
-					//services.AddSingleton<F1_2019_DataVisualizer>();
-					//services.AddHostedService<F1_2019_HostedService>();
-				});
+					services.Configure<UdpListenerSettings>(hostingContext.Configuration.GetSection("UdpSettings"));
+                    //services.AddSingleton<F1_2017Listener>();
+                    //services.AddSingleton<F1_2017_Telemetry>();
+                    //services.AddSingleton<F1_2017_DataVisualizer>();
+                    //services.AddHostedService<F1_2017_HostedService>();
+                    ////services.AddSingleton<F1_2017Listener>();
+                    //services.AddSingleton<F1_2019_Motion>();
+                    //services.AddSingleton<F1_2019_Event>();
+                    //services.AddSingleton<F1_2019_Telemetry>();
+                    //services.AddSingleton<F1_2019Listener>();
+                    //services.AddSingleton<F1_2019_DataVisualizer>();
+                    //services.AddHostedService<F1_2019_HostedService>();
+                    services.AddSingleton<F1_2020Listener>();
+                    services.AddSingleton<CarLapRepository>();
+                    services.AddSingleton<SetupRepository>();
+                    services.AddSingleton<CosmosDemoCarLap>();
+                    services.AddSingleton<CosmosDemoSetup>(); 
+                    services.AddHostedService<CosmosDemoHostedService>();
+
+                    CosmosClientBuilder clientBuilder = new CosmosClientBuilder(hostingContext.Configuration["CosmosConnectionString"]);
+                    var client = clientBuilder.WithConnectionModeDirect().Build();
+                    services.AddSingleton(client);
+                });
 		}
     }
 }

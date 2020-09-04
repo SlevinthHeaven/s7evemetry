@@ -42,7 +42,7 @@ namespace S7evemetry.Console._2017
 
 		protected virtual void UpdateUI(UdpPacketData data)
 		{
-			var index = (int)data.PlayerCarIndex;
+			//var index = (int)data.PlayerCarIndex;
             lock (SyncRoot)
             {
                 // engine

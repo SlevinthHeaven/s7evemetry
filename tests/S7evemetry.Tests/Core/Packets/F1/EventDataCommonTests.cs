@@ -2,7 +2,6 @@
 using S7evemetry.Core.Enums.F1;
 using S7evemetry.Core.Packets.F1;
 using S7evemetry.Tests.Core.Packets.F1.MockPackets;
-using System;
 using System.Text;
 using Xunit;
 
@@ -10,20 +9,6 @@ namespace S7evemetry.Tests.Core.Packets.F1
 {
     public class EventDataCommonTests
     {
-        [Fact]
-        public void EventDataCommonSize()
-        {
-            var result = EventDataCommon.Size;
-            result.Should().Be(4);
-        }
-
-        [Fact]
-        public void EventDataCommonWrongSize()
-        {
-            var result = EventData.Read(new byte[5]);
-
-            result.Should().BeNull();
-        }
 
 
         [Theory]
@@ -45,6 +30,20 @@ namespace S7evemetry.Tests.Core.Packets.F1
             var result = EventData.Read(bytes);
 
             result.Should().NotBeNull().And.Subject.As<EventData>().EventCode.Should().Be(input);
+        }
+        [Fact]
+        public void EventDataCommonSize()
+        {
+            var result = EventDataCommon.Size;
+            result.Should().Be(4);
+        }
+
+        [Fact]
+        public void EventDataCommonWrongSize()
+        {
+            var result = EventData.Read(new byte[5]);
+
+            result.Should().BeNull();
         }
     }
 }
