@@ -6,7 +6,7 @@ namespace S7evemetry.Tests.Core.Structures.MockStructures
 {
     public class PacketHeader : PacketHeaderCommon
     {
-        public static PacketHeader Read(Span<byte> input)
+        public static PacketHeader? Read(Span<byte> input)
         {
             return Read<PacketHeader>(input);
         }

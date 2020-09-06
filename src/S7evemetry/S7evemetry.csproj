@@ -21,7 +21,6 @@
     <ProjectReference Include="..\S7evemetry.F1_2018\S7evemetry.F1_2018.csproj" />
     <ProjectReference Include="..\S7evemetry.F1_2019\S7evemetry.F1_2019.csproj" />
     <ProjectReference Include="..\S7evemetry.F1_2020\S7evemetry.F1_2020.csproj" />
-    <ProjectReference Include="..\S7evemetry.F1_Legacy\S7evemetry.F1_Legacy.csproj" />
     <ProjectReference Include="..\S7evemetry.FH4\S7evemetry.FH4.csproj" />
     <ProjectReference Include="..\S7evemetry.FM7\S7evemetry.FM7.csproj" />
     <ProjectReference Include="..\S7evemetry.Udp\S7evemetry.Udp.csproj" />

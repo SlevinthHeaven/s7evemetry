@@ -6,10 +6,6 @@ namespace S7evemetry.Core.Structures
 {
     public abstract class PacketHeaderCommon
     {
-        /// <summary>
-        /// Size of the Packet Header
-        /// </summary>
-        public int Size { get; } = 21;
 
         /// <summary>
         /// The GridSize in game, this is used in the readers to add
@@ -47,13 +43,19 @@ namespace S7evemetry.Core.Structures
         public byte PlayerCarIndex { get; set; }
 
         /// <summary>
+        /// Size of the Packet Header
+        /// </summary>
+        public static int Size { get; } = 21;
+
+        /// <summary>
         /// Default read of the Packet Header, can only be used by inherited types
         /// </summary>
         /// <typeparam name="T">The Type of the inherited class</typeparam>
         /// <param name="input">The byte array to deserialize</param>
         /// <returns>a new object of the specified Type(T) </returns>
-        protected static T Read<T>(Span<byte> input) where T: PacketHeaderCommon, new()
+        protected static T? Read<T>(Span<byte> input) where T: PacketHeaderCommon, new()
         {
+            if (input.Length != Size) return null;
             return new T
             {
                 PacketFormat = (PacketFormat)BinaryPrimitives.ReadUInt16LittleEndian(input.Slice(0,2)),

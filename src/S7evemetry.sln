@@ -21,11 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S7evemetry.FM7", "S7evemetr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S7evemetry.Tests", "..\tests\S7evemetry.Tests\S7evemetry.Tests.csproj", "{34925421-B313-45DE-A10B-5E569A900979}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S7evemetry.F1_Legacy", "S7evemetry.F1_Legacy\S7evemetry.F1_Legacy.csproj", "{D359F6A9-10CE-4072-BBF4-DD3330B08E70}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S7evemetry.F1_2017", "S7evemetry.F1_2017\S7evemetry.F1_2017.csproj", "{1765BC09-0B26-469D-B058-74D9941DC83D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S7evemetry", "S7evemetry\S7evemetry.csproj", "{501FFEA3-21F4-479C-978A-8D4F1CD31B48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S7evemetry", "S7evemetry\S7evemetry.csproj", "{501FFEA3-21F4-479C-978A-8D4F1CD31B48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,10 +67,6 @@ Global
 		{34925421-B313-45DE-A10B-5E569A900979}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34925421-B313-45DE-A10B-5E569A900979}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34925421-B313-45DE-A10B-5E569A900979}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D359F6A9-10CE-4072-BBF4-DD3330B08E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D359F6A9-10CE-4072-BBF4-DD3330B08E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D359F6A9-10CE-4072-BBF4-DD3330B08E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D359F6A9-10CE-4072-BBF4-DD3330B08E70}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1765BC09-0B26-469D-B058-74D9941DC83D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1765BC09-0B26-469D-B058-74D9941DC83D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1765BC09-0B26-469D-B058-74D9941DC83D}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -7,7 +7,7 @@ namespace S7evemetry.F1_2019.Structures
 {
     public class PacketHeader : PacketHeaderCommon
     {
-        public new int Size { get; } = 23;
+        public static new int Size { get; } = 23;
         public byte GameMajorVersion { get; set; }     // Game major version - "X.00"
         public byte GameMinorVersion { get; set; }    // Game minor version - "1.XX"
         public static PacketHeader Read(Span<byte> input)

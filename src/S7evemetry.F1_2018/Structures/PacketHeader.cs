@@ -5,7 +5,7 @@ namespace S7evemetry.F1_2018.Structures
 {
     public class PacketHeader : PacketHeaderCommon
     {
-		public static PacketHeader Read(Span<byte> input)
+		public static PacketHeader? Read(Span<byte> input)
 		{
             return Read<PacketHeader>(input);
 		}

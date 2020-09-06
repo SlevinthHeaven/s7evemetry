@@ -7,7 +7,7 @@ namespace S7evemetry.F1_2020.Structures
 {
     public class PacketHeader : PacketHeaderCommon
     {
-        public new int Size { get; } = 24;
+        public static new int Size { get; } = 24;
         public new int GridSize { get; } = 22;
         public byte GameMajorVersion { get; set; }     // Game major version - "X.00"
         public byte GameMinorVersion { get; set; }    // Game minor version - "1.XX"

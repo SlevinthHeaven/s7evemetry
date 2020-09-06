@@ -143,7 +143,7 @@ namespace S7evemetry.F1_2019.Listeners
                 var spanData = new Span<byte>(data);
                 var packetHeader = PacketHeader.Read(spanData);
 
-                var input = spanData.Slice(packetHeader.Size);
+                var input = spanData.Slice(PacketHeader.Size);
 
                 switch (packetHeader.PacketId)
                 {

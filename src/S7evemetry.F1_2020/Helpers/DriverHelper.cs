@@ -87,7 +87,7 @@
                 default:
                     break;
             }
-            return "";
+            return "Unknown";
         }
     }
 }
