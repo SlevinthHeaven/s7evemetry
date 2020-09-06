@@ -1,29 +1,56 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <nullable>enable</nullable>
     <LangVersion>8.0</LangVersion>
     <PackageId>S7evemetry</PackageId>
-    <Version>0.1.1-alpha1</Version>
+    <VersionPrefix>0.1.1</VersionPrefix>
+    <VersionSuffix>$(VersionSuffix)</VersionSuffix>
     <Author>Andy Morrell (LuckyNoS7evin)</Author>
     <Authors>Andy Morrell (LuckyNoS7evin)</Authors>
     <Company>Slevinth Heaven Ltd</Company>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Copyright>Slevinth Heaven Ltd 2020</Copyright>
     <PackageProjectUrl>https://github.com/SlevinthHeaven/s7evemetry</PackageProjectUrl>
-    <Description>An sdk for receiving telemetry data from multiple games</Description>
+    <Description>An sdk for receiving telemetry data from multiple sim racing games</Description>
+    <SignAssembly>true</SignAssembly>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\S7evemetry.Core\S7evemetry.Core.csproj" />
-    <ProjectReference Include="..\S7evemetry.F1_2017\S7evemetry.F1_2017.csproj" />
-    <ProjectReference Include="..\S7evemetry.F1_2018\S7evemetry.F1_2018.csproj" />
-    <ProjectReference Include="..\S7evemetry.F1_2019\S7evemetry.F1_2019.csproj" />
-    <ProjectReference Include="..\S7evemetry.F1_2020\S7evemetry.F1_2020.csproj" />
-    <ProjectReference Include="..\S7evemetry.FH4\S7evemetry.FH4.csproj" />
-    <ProjectReference Include="..\S7evemetry.FM7\S7evemetry.FM7.csproj" />
-    <ProjectReference Include="..\S7evemetry.Udp\S7evemetry.Udp.csproj" />
+    <ProjectReference Include="..\S7evemetry.Core\S7evemetry.Core.csproj">
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>S7evemetry.Core.dll</IncludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\S7evemetry.F1_2017\S7evemetry.F1_2017.csproj">
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>S7evemetry.F1_2017.dll</IncludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\S7evemetry.F1_2018\S7evemetry.F1_2018.csproj" >
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>S7evemetry.F1_2018.dll</IncludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\S7evemetry.F1_2019\S7evemetry.F1_2019.csproj" >
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>S7evemetry.F1_2019.dll</IncludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\S7evemetry.F1_2020\S7evemetry.F1_2020.csproj" >
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>S7evemetry.F1_2020.dll</IncludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\S7evemetry.FH4\S7evemetry.FH4.csproj" >
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>S7evemetry.FH4.dll</IncludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\S7evemetry.FM7\S7evemetry.FM7.csproj" >
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>S7evemetry.FM7.dll</IncludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\S7evemetry.Udp\S7evemetry.Udp.csproj" >
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>S7evemetry.Udp.dll</IncludeAssets>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -32,4 +59,10 @@
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
+  
+  <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))"/>
+    </ItemGroup>
+  </Target>
 </Project>
