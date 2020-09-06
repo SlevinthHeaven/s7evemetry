@@ -27,6 +27,13 @@ namespace S7evemetry.Tests.Core.Structures
         }
 
         [Fact]
+        public void PacketHeaderGridSize()
+        {
+            var result = new  PacketHeader().GridSize;
+            result.Should().Be(20);
+        }
+
+        [Fact]
         public void PacketHeaderWrongSize()
         {
             var result = PacketHeader.Read(new byte[142]);
