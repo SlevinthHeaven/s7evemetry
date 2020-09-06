@@ -5,7 +5,7 @@
     <nullable>enable</nullable>
     <LangVersion>8.0</LangVersion>
     <PackageId>S7evemetry</PackageId>
-    <Version>0.1.1-alpha1</Version>
+    <Version>0.1.1</Version>
     <Author>Andy Morrell (LuckyNoS7evin)</Author>
     <Authors>Andy Morrell (LuckyNoS7evin)</Authors>
     <Company>Slevinth Heaven Ltd</Company>
@@ -13,6 +13,7 @@
     <Copyright>Slevinth Heaven Ltd 2020</Copyright>
     <PackageProjectUrl>https://github.com/SlevinthHeaven/s7evemetry</PackageProjectUrl>
     <Description>An sdk for receiving telemetry data from multiple games</Description>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>
