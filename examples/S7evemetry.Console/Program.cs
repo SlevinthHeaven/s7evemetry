@@ -32,25 +32,15 @@ namespace S7evemetry.Console
 				.ConfigureServices((hostingContext, services) =>
 				{
 					services.Configure<UdpListenerSettings>(hostingContext.Configuration.GetSection("UdpSettings"));
-                    //services.AddSingleton<F1_2017Listener>();
-                    //services.AddSingleton<F1_2017_Telemetry>();
-                    //services.AddSingleton<F1_2017_DataVisualizer>();
-                    //services.AddHostedService<F1_2017_HostedService>();
-                    ////services.AddSingleton<F1_2017Listener>();
-                    //services.AddSingleton<F1_2019_Motion>();
-                    //services.AddSingleton<F1_2019_Event>();
-                    //services.AddSingleton<F1_2019_Telemetry>();
-                    //services.AddSingleton<F1_2019Listener>();
-                    //services.AddSingleton<F1_2019_DataVisualizer>();
-                    //services.AddHostedService<F1_2019_HostedService>();
                     services.AddSingleton<F1_2020Listener>();
                     services.AddSingleton<CarLapRepository>();
                     services.AddSingleton<SetupRepository>();
                     services.AddSingleton<CosmosDemoCarLap>();
+                    services.AddSingleton<CosmosDemoParticipant>();
                     services.AddSingleton<CosmosDemoSetup>(); 
                     services.AddHostedService<CosmosDemoHostedService>();
 
-                    CosmosClientBuilder clientBuilder = new CosmosClientBuilder(hostingContext.Configuration["CosmosConnectionString"]);
+                    CosmosClientBuilder clientBuilder = new CosmosClientBuilder("AccountEndpoint=https://s7evemetry-sata.documents.azure.com:443/;AccountKey=QPAzzue4MKE3bSwnT2TElpGC98XOY2SZgd6SrIGWVLC5iFsy27feYDNV4ZzW4EbNtkFqwlgZ5GBfmwPqtgmF0Q==;");
                     var client = clientBuilder.WithConnectionModeDirect().Build();
                     services.AddSingleton(client);
                 });

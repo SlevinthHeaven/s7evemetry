@@ -9,15 +9,18 @@ namespace S7evemetry.Console.CosmosDemo
     public class CosmosDemoHostedService : IHostedService, IAsyncDisposable
     {
         private readonly CosmosDemoCarLap _cosmosDemoCarLap;
+        private readonly CosmosDemoParticipant _cosmosDemoParticipant;
         private readonly CosmosDemoSetup _cosmosDemoSetup;
         private readonly F1_2020Listener _f1_2019Listener;
 
         public CosmosDemoHostedService(
             CosmosDemoCarLap cosmosDemoCarLap,
+            CosmosDemoParticipant cosmosDemoParticipant,
             CosmosDemoSetup cosmosDemoSetup,
             F1_2020Listener f1_2019Listener)
         {
             _cosmosDemoCarLap = cosmosDemoCarLap;
+            _cosmosDemoParticipant = cosmosDemoParticipant;
             _cosmosDemoSetup = cosmosDemoSetup;
             _f1_2019Listener = f1_2019Listener;
         }
@@ -31,6 +34,7 @@ namespace S7evemetry.Console.CosmosDemo
         {
             cancellationToken.ThrowIfCancellationRequested();
             _cosmosDemoCarLap.Subscribe(_f1_2019Listener);
+            _cosmosDemoParticipant.Subscribe(_f1_2019Listener);
             _cosmosDemoSetup.Subscribe(_f1_2019Listener);
             _f1_2019Listener.Listen(cancellationToken);
             return Task.CompletedTask;
@@ -40,6 +44,7 @@ namespace S7evemetry.Console.CosmosDemo
         {
             cancellationToken.ThrowIfCancellationRequested();
             _cosmosDemoCarLap.Unsubscribe();
+            _cosmosDemoParticipant.Unsubscribe();
             _cosmosDemoSetup.Unsubscribe();
             return Task.CompletedTask;
         }

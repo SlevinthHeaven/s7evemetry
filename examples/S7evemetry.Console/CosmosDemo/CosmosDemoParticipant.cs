@@ -9,11 +9,11 @@ using System.Text;
 
 namespace S7evemetry.Console.CosmosDemo
 {
-    public class CosmosDemoCarLap : LapDataObserver
+    public class CosmosDemoParticipant : ParticipantsDataObserver
     {
         private readonly CarLapRepository _carLapRepository;
         private DateTime _lastSave = DateTime.MinValue;
-        public CosmosDemoCarLap(CarLapRepository carLapRepository)
+        public CosmosDemoParticipant(CarLapRepository carLapRepository)
         {
             _carLapRepository = carLapRepository;
         }
@@ -30,7 +30,7 @@ namespace S7evemetry.Console.CosmosDemo
         {
         }
 
-        public override void OnNext(PacketData<PacketHeader, LapData, CarLap> value)
+        public override void OnNext(PacketData<PacketHeader, ParticipantData, Participant> value)
         {
             var now = DateTime.UtcNow;
             if (_lastSave.AddSeconds(1) < now)
