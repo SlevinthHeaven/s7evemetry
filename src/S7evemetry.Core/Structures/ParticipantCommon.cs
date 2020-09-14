@@ -56,7 +56,7 @@ namespace S7evemetry.Core.Structures
             {
                 AiControlled = Convert.ToBoolean(input[0]),
                 RaceNumber = input[3],
-                Name = Encoding.UTF8.GetString(input.Slice(5, 48)).Trim()
+                Name = Encoding.UTF8.GetString(input.Slice(5, 48)).Trim('\0')
             };
         }
     }
