@@ -43,8 +43,8 @@ namespace S7evemetry.F1_2020.Structures
             return new LobbyInfo
             {
                 AiControlled = Convert.ToBoolean(input[0]), //1
-                Team = TeamHelper.GetTeamById(input[2]), //2
-                Nationality = NationalityHelper.GetNationalityById(input[1]), //3
+                Team = TeamHelper.GetTeamById(input[1]), //2
+                Nationality = NationalityHelper.GetNationalityById(input[2]), //3
                 Name = Encoding.UTF8.GetString(input.Slice(3, 48)).Trim('\0'), //51
                 ReadyStatus = input[51]
             };
