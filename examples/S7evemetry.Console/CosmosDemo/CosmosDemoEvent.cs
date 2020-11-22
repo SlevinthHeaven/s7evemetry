@@ -2,6 +2,7 @@
 using S7evemetry.Core;
 using S7evemetry.Core.Packets.F1;
 using S7evemetry.F1_2020.Observers;
+using S7evemetry.F1_2020.Packets;
 using S7evemetry.F1_2020.Structures;
 using System;
 using System.Collections.Generic;
@@ -9,14 +10,14 @@ using System.Text;
 
 namespace S7evemetry.Console.CosmosDemo
 {
-    public class CosmosDemoCarLap : LapDataObserver
+    public class CosmosDemoEvent : EventDataObserver
     {
-        private readonly CarLapRepository _carLapRepository;
+        //private readonly SetupRepository _carLapRepository;
         private DateTime _lastSave = DateTime.MinValue;
-        public CosmosDemoCarLap(CarLapRepository carLapRepository)
-        {
-            _carLapRepository = carLapRepository;
-        }
+        //public CosmosDemoEvent(SetupRepository carLapRepository)
+        //{
+        //    _carLapRepository = carLapRepository;
+        //}
 
         public override void OnCompleted()
         {
@@ -30,13 +31,12 @@ namespace S7evemetry.Console.CosmosDemo
         {
         }
 
-        public override void OnNext(PacketData<PacketHeader, LapData, CarLap> value)
+        public override void OnNext(PacketData<PacketHeader, EventData> value)
         {
             var now = DateTime.UtcNow;
-            if (_lastSave.AddMilliseconds(100) < now)
+            if (_lastSave.AddSeconds(1) < now)
             {
                 _lastSave = now;
-                _carLapRepository.SaveAsync(value.Header.PlayerCarIndex, value.Header.SessionTime, value.CarData[value.Header.PlayerCarIndex]);
             }
         }
     }

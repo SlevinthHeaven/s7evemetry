@@ -11,12 +11,12 @@ namespace S7evemetry.Console.CosmosDemo
 {
     public class CosmosDemoSetup : CarSetupDataObserver
     {
-        private readonly SetupRepository _carLapRepository;
+        //private readonly SetupRepository _carLapRepository;
         private DateTime _lastSave = DateTime.MinValue;
-        public CosmosDemoSetup(SetupRepository carLapRepository)
-        {
-            _carLapRepository = carLapRepository;
-        }
+        //public CosmosDemoSetup(SetupRepository carLapRepository)
+        //{
+        //    _carLapRepository = carLapRepository;
+        //}
 
         public override void OnCompleted()
         {
@@ -38,7 +38,7 @@ namespace S7evemetry.Console.CosmosDemo
                 _lastSave = now;
                 for (var i = 0; i < value.CarData.Count; i++)
                 {
-                    _carLapRepository.SaveAsync(i, value.Header.SessionTime, value.CarData[i]);
+                  // _carLapRepository.SaveAsync(i, value.Header.SessionTime, value.CarData[i]);
                 }
             }
         }

@@ -32,22 +32,13 @@ namespace S7evemetry.Console
 				.ConfigureServices((hostingContext, services) =>
 				{
 					services.Configure<UdpListenerSettings>(hostingContext.Configuration.GetSection("UdpSettings"));
-                    //services.AddSingleton<F1_2017Listener>();
-                    //services.AddSingleton<F1_2017_Telemetry>();
-                    //services.AddSingleton<F1_2017_DataVisualizer>();
-                    //services.AddHostedService<F1_2017_HostedService>();
-                    ////services.AddSingleton<F1_2017Listener>();
-                    //services.AddSingleton<F1_2019_Motion>();
-                    //services.AddSingleton<F1_2019_Event>();
-                    //services.AddSingleton<F1_2019_Telemetry>();
-                    //services.AddSingleton<F1_2019Listener>();
-                    //services.AddSingleton<F1_2019_DataVisualizer>();
-                    //services.AddHostedService<F1_2019_HostedService>();
+        
                     services.AddSingleton<F1_2020Listener>();
                     services.AddSingleton<CarLapRepository>();
-                    services.AddSingleton<SetupRepository>();
+                   // services.AddSingleton<SetupRepository>();
                     services.AddSingleton<CosmosDemoCarLap>();
-                    services.AddSingleton<CosmosDemoSetup>(); 
+                    //services.AddSingleton<CosmosDemoSetup>();
+                    //services.AddSingleton<CosmosDemoEvent>();
                     services.AddHostedService<CosmosDemoHostedService>();
 
                     CosmosClientBuilder clientBuilder = new CosmosClientBuilder(hostingContext.Configuration["CosmosConnectionString"]);
