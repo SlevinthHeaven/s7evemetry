@@ -17,7 +17,7 @@ namespace S7evemetry.F1_2018.Readers
 
 			if (packetHeader.PacketId != PacketType.Participants) return null;
 
-			if (input.Length != (packetHeader.GridSize * CarMotion.Size) + ParticipantData.Size)
+			if (input.Length != (packetHeader.GridSize * Participant.Size) + ParticipantData.Size)
 			{
 				return null;
 			}

@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <nullable>enable</nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="irsdkSharp.Calculation" Version="0.1.0" />
+    <PackageReference Include="irsdkSharp.Serialization" Version="0.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\S7evemetry.Core\S7evemetry.Core.csproj" />
+  </ItemGroup>
+
+</Project>

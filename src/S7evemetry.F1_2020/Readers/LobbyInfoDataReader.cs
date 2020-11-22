@@ -17,9 +17,7 @@ namespace S7evemetry.F1_2020.Readers
 
 			if (packetHeader.PacketId != PacketType.LobbyInfo) return null;
 
-			if (input.Length != 
-								(packetHeader.GridSize * LobbyInfo.Size) +
-								LobbyInfoData.Size)
+			if (input.Length != (packetHeader.GridSize * LobbyInfo.Size) + LobbyInfoData.Size)
 			{
 				return null;
 			}
@@ -31,7 +29,7 @@ namespace S7evemetry.F1_2020.Readers
 
 			for (var i = 0; i < packet.Header.GridSize; i++)
 			{
-				packet.CarData.Add(LobbyInfo.Read(input.Slice((i * LobbyInfo.Size), LobbyInfo.Size)));
+				packet.CarData.Add(LobbyInfo.Read(input.Slice((i * LobbyInfo.Size) + LobbyInfoData.Size, LobbyInfo.Size)));
 			}
 
 			packet.Data = LobbyInfoData.Read(input.Slice(0, LobbyInfoData.Size));

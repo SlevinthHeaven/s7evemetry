@@ -18,7 +18,7 @@ namespace S7evemetry.F1_2020.Readers
 			if (packetHeader.PacketId != PacketType.Participants) return null;
 
 			if (input.Length != 
-								(packetHeader.GridSize * CarMotion.Size) +
+								(packetHeader.GridSize * Participant.Size) +
 								ParticipantData.Size)
 			{
 				return null;
@@ -31,7 +31,7 @@ namespace S7evemetry.F1_2020.Readers
 
 			for (var i = 0; i < packet.Header.GridSize; i++)
 			{
-				packet.CarData.Add(Participant.Read(input.Slice(1 + (i * Participant.Size), Participant.Size)));
+				packet.CarData.Add(Participant.Read(input.Slice(ParticipantData.Size + (i * Participant.Size), Participant.Size)));
 			}
 
 			var data = ParticipantData.Read(input.Slice(0, ParticipantData.Size));
