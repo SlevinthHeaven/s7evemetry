@@ -33,5 +33,11 @@
       <IncludeAssets>S7evemetry.Core.dll</IncludeAssets>
     </ProjectReference>
   </ItemGroup>
+  
+  <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+    </ItemGroup>
+  </Target>
 
 </Project>
