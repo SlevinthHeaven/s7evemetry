@@ -1,8 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <nullable>enable</nullable>
+    <LangVersion>8.0</LangVersion>
+    <PackageId>S7evemetry.iRacing</PackageId>
+    <VersionPrefix>0.1.2</VersionPrefix>
+    <VersionSuffix>$(VersionSuffix)</VersionSuffix>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Author>Andy Morrell (LuckyNoS7evin)</Author>
+    <Authors>Andy Morrell (LuckyNoS7evin)</Authors>
+    <Company>Slevinth Heaven Ltd</Company>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Copyright>Slevinth Heaven Ltd 2020</Copyright>
+    <PackageProjectUrl>https://github.com/SlevinthHeaven/s7evemetry</PackageProjectUrl>
+    <Description>An sdk for receiving telemetry data iRacing</Description>
+    <SignAssembly>true</SignAssembly>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+    <AssemblyName>S7evemetry.iRacing</AssemblyName>
+    <RootNamespace>S7evemetry.iRacing</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,7 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\S7evemetry.Core\S7evemetry.Core.csproj" />
+    <ProjectReference Include="..\S7evemetry.Core\S7evemetry.Core.csproj">
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>S7evemetry.Core.dll</IncludeAssets>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>
