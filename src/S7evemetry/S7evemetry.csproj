@@ -5,7 +5,7 @@
     <nullable>enable</nullable>
     <LangVersion>8.0</LangVersion>
     <PackageId>S7evemetry</PackageId>
-    <VersionPrefix>0.1.1</VersionPrefix>
+    <VersionPrefix>0.1.2</VersionPrefix>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -29,27 +29,31 @@
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>S7evemetry.F1_2017.dll</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\S7evemetry.F1_2018\S7evemetry.F1_2018.csproj" >
+    <ProjectReference Include="..\S7evemetry.F1_2018\S7evemetry.F1_2018.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>S7evemetry.F1_2018.dll</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\S7evemetry.F1_2019\S7evemetry.F1_2019.csproj" >
+    <ProjectReference Include="..\S7evemetry.F1_2019\S7evemetry.F1_2019.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>S7evemetry.F1_2019.dll</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\S7evemetry.F1_2020\S7evemetry.F1_2020.csproj" >
+    <ProjectReference Include="..\S7evemetry.F1_2020\S7evemetry.F1_2020.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>S7evemetry.F1_2020.dll</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\S7evemetry.FH4\S7evemetry.FH4.csproj" >
+    <ProjectReference Include="..\S7evemetry.FH4\S7evemetry.FH4.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>S7evemetry.FH4.dll</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\S7evemetry.FM7\S7evemetry.FM7.csproj" >
+    <ProjectReference Include="..\S7evemetry.FM7\S7evemetry.FM7.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>S7evemetry.FM7.dll</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\S7evemetry.Udp\S7evemetry.Udp.csproj" >
+    <ProjectReference Include="..\S7evemetry.iRacing\S7evemetry.iRacing.csproj">
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>S7evemetry.iRacing.dll</IncludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\S7evemetry.Udp\S7evemetry.Udp.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>S7evemetry.Udp.dll</IncludeAssets>
     </ProjectReference>
@@ -64,7 +68,7 @@
   
   <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
     <ItemGroup>
-      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))"/>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
     </ItemGroup>
   </Target>
 </Project>
