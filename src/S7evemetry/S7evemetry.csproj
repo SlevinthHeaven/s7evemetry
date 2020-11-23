@@ -5,7 +5,7 @@
     <nullable>enable</nullable>
     <LangVersion>8.0</LangVersion>
     <PackageId>S7evemetry</PackageId>
-    <VersionPrefix>0.1.2</VersionPrefix>
+    <VersionPrefix>0.1.3</VersionPrefix>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -49,10 +49,7 @@
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>S7evemetry.FM7.dll</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\S7evemetry.iRacing\S7evemetry.iRacing.csproj">
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-      <IncludeAssets>S7evemetry.iRacing.dll</IncludeAssets>
-    </ProjectReference>
+    <ProjectReference Include="..\S7evemetry.iRacing\S7evemetry.iRacing.csproj" />
     <ProjectReference Include="..\S7evemetry.Udp\S7evemetry.Udp.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>S7evemetry.Udp.dll</IncludeAssets>
