@@ -33,6 +33,13 @@
       <IncludeAssets>S7evemetry.Core.dll</IncludeAssets>
     </ProjectReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
   
   <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
     <ItemGroup>
