@@ -7,6 +7,7 @@ An sdk for receiving telemetry data from multiple games
  - F1 2020
  - Forza Horizon 4
  - Forza Motorsport 7
+ - iRacing
 
 ## Documentation
 
