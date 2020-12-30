@@ -1,4 +1,5 @@
-﻿using irsdkSharp.Serialization.Models.Data;
+﻿using irsdkSharp.Serialization;
+using irsdkSharp.Serialization.Models.Data;
 using irsdkSharp.Serialization.Models.Session;
 using Microsoft.Extensions.Logging;
 using S7evemetry.Core;
@@ -15,7 +16,7 @@ namespace S7evemetry.iRacing.Listeners
 
     {
         private readonly ILogger<IRacingListener> _logger;
-        private readonly irsdkSharp.Serialization.IRacingSDK _sdk;
+        private readonly irsdkSharp.IRacingSDK _sdk;
         private readonly ICollection<IObserver<IRacingDataModel>> _dataObservers;
         private readonly ICollection<IObserver<IRacingSessionModel>> _sessionObservers;
 
@@ -27,7 +28,7 @@ namespace S7evemetry.iRacing.Listeners
         public IRacingListener(ILogger<IRacingListener> logger)
         {
             _logger = logger;
-            _sdk = new irsdkSharp.Serialization.IRacingSDK();
+            _sdk = new irsdkSharp.IRacingSDK();
             _dataObservers = new List<IObserver<IRacingDataModel>>();
             _sessionObservers = new List<IObserver<IRacingSessionModel>>();
 
@@ -101,7 +102,7 @@ namespace S7evemetry.iRacing.Listeners
                         continue;
                     }
 
-                    NotifyData(_sdk.GetData());
+                    NotifyData(_sdk.GetSerializedData());
 
                     // Is the session info updated?
                     int newUpdate = _sdk.Header.SessionInfoUpdate;
@@ -110,7 +111,7 @@ namespace S7evemetry.iRacing.Listeners
                         lastUpdate = newUpdate;
 
                         // Get the session info string
-                        NotifyData(_sdk.GetSessionInformation()); 
+                        NotifyData(_sdk.GetSerializedSessionInfo()); 
                     }
 
                 }

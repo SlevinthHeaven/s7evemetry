@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
     <nullable>enable</nullable>
     <LangVersion>8.0</LangVersion>
     <PackageId>S7evemetry.iRacing</PackageId>
-    <VersionPrefix>0.1.4</VersionPrefix>
+    <VersionPrefix>0.1.5</VersionPrefix>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -22,8 +22,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="irsdkSharp.Calculation" Version="0.1.1" />
-    <PackageReference Include="irsdkSharp.Serialization" Version="0.1.1" />
+    <PackageReference Include="irsdkSharp.Calculation" Version="0.2.4" />
+    <PackageReference Include="irsdkSharp.Serialization" Version="0.2.4" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.6" />
   </ItemGroup>
 

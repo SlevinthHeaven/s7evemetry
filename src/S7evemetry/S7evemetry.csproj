@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
     <nullable>enable</nullable>
     <LangVersion>8.0</LangVersion>
     <PackageId>S7evemetry</PackageId>
-    <VersionPrefix>0.1.4</VersionPrefix>
+    <VersionPrefix>0.1.5</VersionPrefix>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
