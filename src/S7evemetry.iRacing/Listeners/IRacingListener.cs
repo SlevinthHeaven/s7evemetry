@@ -3,6 +3,7 @@ using irsdkSharp.Serialization.Models.Data;
 using irsdkSharp.Serialization.Models.Session;
 using Microsoft.Extensions.Logging;
 using S7evemetry.Core;
+using S7evemetry.iRacing.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -12,13 +13,17 @@ namespace S7evemetry.iRacing.Listeners
 {
     public class IRacingListener :
         IObservable<IRacingDataModel>,
-        IObservable<IRacingSessionModel>
+        IObservable<IRacingSessionModel>,
+        IObservable<ConnectedModel>,
+        IObservable<DisconnectedModel>
 
     {
         private readonly ILogger<IRacingListener> _logger;
         private readonly irsdkSharp.IRacingSDK _sdk;
         private readonly ICollection<IObserver<IRacingDataModel>> _dataObservers;
         private readonly ICollection<IObserver<IRacingSessionModel>> _sessionObservers;
+        private readonly ICollection<IObserver<ConnectedModel>> _connectedObservers;
+        private readonly ICollection<IObserver<DisconnectedModel>> _disconnectedObservers;
 
         private bool _hasConnected;
         private int _waitTime;
@@ -31,6 +36,8 @@ namespace S7evemetry.iRacing.Listeners
             _sdk = new irsdkSharp.IRacingSDK();
             _dataObservers = new List<IObserver<IRacingDataModel>>();
             _sessionObservers = new List<IObserver<IRacingSessionModel>>();
+            _connectedObservers = new List<IObserver<ConnectedModel>>();
+            _disconnectedObservers = new List<IObserver<DisconnectedModel>>();
 
             Task.Run(() => Loop());
         }
@@ -53,6 +60,24 @@ namespace S7evemetry.iRacing.Listeners
             return new Unsubscriber<IRacingSessionModel>(_sessionObservers, observer);
         }
 
+        public IDisposable Subscribe(IObserver<ConnectedModel> observer)
+        {
+            if (!_connectedObservers.Contains(observer))
+            {
+                _connectedObservers.Add(observer);
+            }
+            return new Unsubscriber<ConnectedModel>(_connectedObservers, observer);
+        }
+
+        public IDisposable Subscribe(IObserver<DisconnectedModel> observer)
+        {
+            if (!_disconnectedObservers.Contains(observer))
+            {
+                _disconnectedObservers.Add(observer);
+            }
+            return new Unsubscriber<DisconnectedModel>(_disconnectedObservers, observer);
+        }
+
         protected void NotifyData(IRacingSessionModel data)
         {
             foreach (var observer in _sessionObservers)
@@ -60,9 +85,26 @@ namespace S7evemetry.iRacing.Listeners
                 observer.OnNext(data);
             }
         }
+
         protected void NotifyData(IRacingDataModel data)
         {
             foreach (var observer in _dataObservers)
+            {
+                observer.OnNext(data);
+            }
+        }
+
+        protected void NotifyData(ConnectedModel data)
+        {
+            foreach (var observer in _connectedObservers)
+            {
+                observer.OnNext(data);
+            }
+        }
+
+        protected void NotifyData(DisconnectedModel data)
+        {
+            foreach (var observer in _disconnectedObservers)
             {
                 observer.OnNext(data);
             }
@@ -81,6 +123,7 @@ namespace S7evemetry.iRacing.Listeners
                     {
                         _logger.LogInformation("Now Connected");
                         // If this is the first time, raise the Connected event
+                        NotifyData(new ConnectedModel());
                         //this.RaiseEvent(OnConnected, EventArgs.Empty);
                     }
 
@@ -117,6 +160,11 @@ namespace S7evemetry.iRacing.Listeners
                 }
                 else if (_hasConnected)
                 {
+
+                    if (_IsConnected)
+                    {
+                        NotifyData(new DisconnectedModel());
+                    }
                     _sdk.Shutdown();
                     lastUpdate = -1;
                     _IsConnected = false;
@@ -124,6 +172,10 @@ namespace S7evemetry.iRacing.Listeners
                 }
                 else
                 {
+                    if(_IsConnected)
+                    {
+                        NotifyData(new DisconnectedModel());
+                    }
                     _IsConnected = false;
                     _hasConnected = false;
 
