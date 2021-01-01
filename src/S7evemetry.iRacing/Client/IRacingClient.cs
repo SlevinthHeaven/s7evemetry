@@ -45,12 +45,12 @@ namespace S7evemetry.iRacing.Client
 
         private void _iRacingDisconnectedObserver_OnDisconnectedModelCreated(object sender, iRacing.Models.DisconnectedModel e)
         {
-            OnDisconnected?.Invoke(this, null);
+            OnDisconnected?.Invoke(this, new EventArgs { });
         }
 
         private void _iRacingConnectedObserver_OnConnectedModelCreated(object sender, iRacing.Models.ConnectedModel e)
         {
-            OnConnected?.Invoke(this, null);
+            OnConnected?.Invoke(this, new EventArgs { });
         }
 
         private void IRacingSessionObserver_OnSessionModelCreated(object sender, IRacingSessionModel e)

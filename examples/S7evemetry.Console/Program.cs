@@ -11,6 +11,7 @@ using S7evemetry.Console.CosmosDemo;
 using S7evemetry.Console.Data;
 using Microsoft.Azure.Cosmos.Fluent;
 using S7evemetry.F1_2020.Listeners;
+using S7evemetry.iRacing.Extensions;
 
 namespace S7evemetry.Console
 {
@@ -31,19 +32,20 @@ namespace S7evemetry.Console
                 })
 				.ConfigureServices((hostingContext, services) =>
 				{
-					services.Configure<UdpListenerSettings>(hostingContext.Configuration.GetSection("UdpSettings"));
+					//services.Configure<UdpListenerSettings>(hostingContext.Configuration.GetSection("UdpSettings"));
         
-                    services.AddSingleton<F1_2020Listener>();
-                    services.AddSingleton<CarLapRepository>();
+                    //services.AddSingleton<F1_2020Listener>();
+                  // services.AddSingleton<CarLapRepository>();
                    // services.AddSingleton<SetupRepository>();
-                    services.AddSingleton<CosmosDemoCarLap>();
+                   // services.AddSingleton<CosmosDemoCarLap>();
                     //services.AddSingleton<CosmosDemoSetup>();
                     //services.AddSingleton<CosmosDemoEvent>();
-                    services.AddHostedService<CosmosDemoHostedService>();
+                    services.AddHostedService<IracingDemo.IRacingHostedService>();
+                    services.AddIRacingClient();
 
-                    CosmosClientBuilder clientBuilder = new CosmosClientBuilder(hostingContext.Configuration["CosmosConnectionString"]);
-                    var client = clientBuilder.WithConnectionModeDirect().Build();
-                    services.AddSingleton(client);
+                    //CosmosClientBuilder clientBuilder = new CosmosClientBuilder(hostingContext.Configuration["CosmosConnectionString"]);
+                    //var client = clientBuilder.WithConnectionModeDirect().Build();
+                    //services.AddSingleton(client);
                 });
 		}
     }
