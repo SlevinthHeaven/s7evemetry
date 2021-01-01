@@ -146,13 +146,12 @@ namespace S7evemetry.iRacing.Listeners
                     }
 
                     NotifyData(_sdk.GetSerializedData());
-
+                
                     // Is the session info updated?
                     int newUpdate = _sdk.Header.SessionInfoUpdate;
                     if (newUpdate != lastUpdate)
                     {
                         lastUpdate = newUpdate;
-
                         // Get the session info string
                         NotifyData(_sdk.GetSerializedSessionInfo()); 
                     }
