@@ -91,5 +91,10 @@ namespace S7evemetry.iRacing.Client
             _iRacingConnectedObserver.Unsubscribe();
             return Task.CompletedTask;
         }
+
+        public bool IsConnected()
+        {
+            return _racingListener.IsConnected();
+        }
     }
 }

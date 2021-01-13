@@ -209,5 +209,19 @@ namespace S7evemetry.iRacing.Listeners
                 return -1;
             }
         }
+
+
+        public bool IsConnected()
+        {
+            try
+            {
+                return _sdk.IsConnected();
+            }
+            catch
+            {
+                return false;
+            }
+            
+        }
     }
 }
