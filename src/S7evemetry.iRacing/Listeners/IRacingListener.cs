@@ -6,13 +6,13 @@ using S7evemetry.Core;
 using S7evemetry.iRacing.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace S7evemetry.iRacing.Listeners
 {
     public class IRacingListener :
-        IObservable<IRacingDataModel>,
         IObservable<IRacingSessionModel>,
         IObservable<ConnectedModel>,
         IObservable<DisconnectedModel>
@@ -20,21 +20,22 @@ namespace S7evemetry.iRacing.Listeners
     {
         private readonly ILogger<IRacingListener> _logger;
         private readonly irsdkSharp.IRacingSDK _sdk;
-        private readonly ICollection<IObserver<IRacingDataModel>> _dataObservers;
+
         private readonly ICollection<IObserver<IRacingSessionModel>> _sessionObservers;
         private readonly ICollection<IObserver<ConnectedModel>> _connectedObservers;
         private readonly ICollection<IObserver<DisconnectedModel>> _disconnectedObservers;
 
         private bool _hasConnected;
-        private int _waitTime;
+        private int _waitTime = 17;
         private bool _IsConnected = false;
         private readonly int _connectSleepTime = 1000;
+        private readonly Stopwatch _stopWatch = new Stopwatch();
 
         public IRacingListener(ILogger<IRacingListener> logger)
         {
             _logger = logger;
             _sdk = new irsdkSharp.IRacingSDK();
-            _dataObservers = new List<IObserver<IRacingDataModel>>();
+
             _sessionObservers = new List<IObserver<IRacingSessionModel>>();
             _connectedObservers = new List<IObserver<ConnectedModel>>();
             _disconnectedObservers = new List<IObserver<DisconnectedModel>>();
@@ -42,14 +43,6 @@ namespace S7evemetry.iRacing.Listeners
             Task.Run(() => Loop());
         }
 
-        public IDisposable Subscribe(IObserver<IRacingDataModel> observer)
-        {
-            if (!_dataObservers.Contains(observer))
-            {
-                _dataObservers.Add(observer);
-            }
-            return new Unsubscriber<IRacingDataModel>(_dataObservers, observer);
-        }
 
         public IDisposable Subscribe(IObserver<IRacingSessionModel> observer)
         {
@@ -86,14 +79,6 @@ namespace S7evemetry.iRacing.Listeners
             }
         }
 
-        protected void NotifyData(IRacingDataModel data)
-        {
-            foreach (var observer in _dataObservers)
-            {
-                observer.OnNext(data);
-            }
-        }
-
         protected void NotifyData(ConnectedModel data)
         {
             foreach (var observer in _connectedObservers)
@@ -124,7 +109,6 @@ namespace S7evemetry.iRacing.Listeners
                         _logger.LogInformation("Now Connected");
                         // If this is the first time, raise the Connected event
                         NotifyData(new ConnectedModel());
-                        //this.RaiseEvent(OnConnected, EventArgs.Empty);
                     }
 
                     _hasConnected = true;
@@ -145,15 +129,16 @@ namespace S7evemetry.iRacing.Listeners
                         continue;
                     }
 
-                    NotifyData(_sdk.GetSerializedData());
-                
                     // Is the session info updated?
                     int newUpdate = _sdk.Header.SessionInfoUpdate;
                     if (newUpdate != lastUpdate)
                     {
                         lastUpdate = newUpdate;
                         // Get the session info string
-                        NotifyData(_sdk.GetSerializedSessionInfo()); 
+                        _stopWatch.Restart();
+                        NotifyData(_sdk.GetSerializedSessionInfo());
+                        _stopWatch.Stop();
+                        _logger.LogInformation($"Get Serialized Session took {_stopWatch.ElapsedMilliseconds}ms");
                     }
 
                 }
@@ -222,6 +207,14 @@ namespace S7evemetry.iRacing.Listeners
                 return false;
             }
             
+        }
+
+
+        public IRacingDataModel GetDataModel()
+        {
+            if (!IsConnected()) return null;
+
+            return _sdk.GetSerializedData();
         }
     }
 }
