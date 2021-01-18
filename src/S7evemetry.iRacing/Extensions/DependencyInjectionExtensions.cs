@@ -12,7 +12,6 @@ namespace S7evemetry.iRacing.Extensions
         {
             services.TryAddSingleton<Listeners.IRacingListener>();
             services.TryAddSingleton<Client.IRacingClient>();
-            services.TryAddSingleton<Client.IRacingDataObserver>();
             services.TryAddSingleton<Client.IRacingSessionObserver>();
             services.TryAddSingleton<Client.IRacingConnectedObserver>();
             services.TryAddSingleton<Client.IRacingDisconnectedObserver>();
