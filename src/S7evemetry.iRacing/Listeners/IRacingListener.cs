@@ -210,7 +210,7 @@ namespace S7evemetry.iRacing.Listeners
         }
 
 
-        public IRacingDataModel GetDataModel()
+        public IRacingDataModel? GetDataModel()
         {
             if (!IsConnected()) return null;
 

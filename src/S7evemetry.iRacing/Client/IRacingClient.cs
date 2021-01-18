@@ -71,7 +71,7 @@ namespace S7evemetry.iRacing.Client
             return _racingListener.IsConnected();
         }
 
-        public IRacingDataModel GetDataModel()
+        public IRacingDataModel? GetDataModel()
         {
             return _racingListener.GetDataModel();
         }
