@@ -14,9 +14,15 @@ namespace S7evemetry.Console.IracingDemo
         public IRacingHostedService(IRacingClient racingClient)
         {
             _racingClient = racingClient;
-            _racingClient.OnDataReceived += _racingClient_OnDataReceived;
+            _racingClient.OnDataReceived += _racingClient_OnDataReceived1; ;
             _racingClient.OnConnected += _racingClient_OnConnected; 
             _racingClient.OnDisconnected += _racingClient_OnDisconnected;
+        }
+
+        private void _racingClient_OnDataReceived1(object sender, irsdkSharp.Serialization.Models.Session.IRacingSessionModel e)
+        {
+            throw new NotImplementedException();
+            var a = "Data";
         }
 
         private void _racingClient_OnDisconnected(object sender, EventArgs e)
@@ -27,11 +33,6 @@ namespace S7evemetry.Console.IracingDemo
         private void _racingClient_OnConnected(object sender, EventArgs e)
         {
             var a = "Connected";
-        }
-
-        private void _racingClient_OnDataReceived(object sender, iRacing.Client.Models.IRacingModel e)
-        {
-            var a = "Data";
         }
 
         public ValueTask DisposeAsync()
