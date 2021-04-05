@@ -43,7 +43,6 @@ namespace S7evemetry.iRacing.Listeners
             Task.Run(() => Loop());
         }
 
-
         public IDisposable Subscribe(IObserver<IRacingSessionModel> observer)
         {
             if (!_sessionObservers.Contains(observer))
@@ -138,7 +137,7 @@ namespace S7evemetry.iRacing.Listeners
                         _stopWatch.Restart();
                         NotifyData(_sdk.GetSerializedSessionInfo());
                         _stopWatch.Stop();
-                        _logger.LogInformation($"Get Serialized Session took {_stopWatch.ElapsedMilliseconds}ms");
+                        //_logger.LogInformation($"Get Serialized Session took {_stopWatch.ElapsedMilliseconds}ms");
                     }
 
                 }
@@ -195,7 +194,6 @@ namespace S7evemetry.iRacing.Listeners
             }
         }
 
-
         public bool IsConnected()
         {
             try
@@ -209,12 +207,18 @@ namespace S7evemetry.iRacing.Listeners
             
         }
 
-
         public IRacingDataModel? GetDataModel()
         {
             if (!IsConnected()) return null;
 
             return _sdk.GetSerializedData();
+        }
+
+        public List<CarModel> GetPositions()
+        {
+            if (!IsConnected()) return new List<CarModel>();
+
+            return _sdk.GetPositions();
         }
     }
 }
