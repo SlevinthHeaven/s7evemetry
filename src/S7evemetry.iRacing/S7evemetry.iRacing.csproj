@@ -4,7 +4,7 @@
     <nullable>enable</nullable>
     <LangVersion>8.0</LangVersion>
     <PackageId>S7evemetry.iRacing</PackageId>
-    <VersionPrefix>0.2.1</VersionPrefix>
+    <VersionPrefix>0.2.2</VersionPrefix>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -23,13 +23,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="irsdkSharp.Calculation" Version="0.3.3" />
+    <PackageReference Include="irsdkSharp.Serialization" Version="0.3.3" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.6" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\irsdkSharp\src\irsdkSharp.Calculation\irsdkSharp.Calculation.csproj" />
-    <ProjectReference Include="..\..\..\irsdkSharp\src\irsdkSharp.Serialization\irsdkSharp.Serialization.csproj" />
     <ProjectReference Include="..\S7evemetry.Core\S7evemetry.Core.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>S7evemetry.Core.dll</IncludeAssets>
