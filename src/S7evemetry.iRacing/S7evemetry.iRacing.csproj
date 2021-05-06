@@ -47,10 +47,10 @@
     <Folder Include="Client\Models\" />
   </ItemGroup>
   
-  <!--<Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
+  <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
     <ItemGroup>
       <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
     </ItemGroup>
-  </Target>-->
+  </Target>
 
 </Project>
