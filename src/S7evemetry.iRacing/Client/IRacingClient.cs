@@ -3,6 +3,7 @@ using irsdkSharp.Serialization.Models.Session;
 using S7evemetry.Core.Interfaces;
 using S7evemetry.iRacing.Listeners;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace S7evemetry.iRacing.Client
@@ -74,6 +75,10 @@ namespace S7evemetry.iRacing.Client
         public IRacingDataModel? GetDataModel()
         {
             return _racingListener.GetDataModel();
+        }
+        public List<CarModel> GetPositions()
+        {
+            return _racingListener.GetPositions();
         }
     }
 }
